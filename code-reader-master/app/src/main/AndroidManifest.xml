@@ -31,12 +31,12 @@
         <activity-alias
             android:name=".StartActivity"
             android:exported="true"
-            android:targetActivity=".MainActivity"
+            android:targetActivity=".CameraScan"
             >
         </activity-alias>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".CameraScan"
             android:label="@string/app_name"
             android:theme="@style/Theme.CodeReader.NoActionBar"
             />
@@ -51,7 +51,7 @@
             android:theme="@style/Theme.CodeReader.NoActionBar"
             />
         <activity
-            android:name=".TOP_menu"
+            android:name=".UnplannedStoredActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

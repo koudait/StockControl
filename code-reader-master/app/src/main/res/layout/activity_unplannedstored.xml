@@ -4,32 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TOP_menu">
+    tools:context=".UnplannedStoredActivity">
 
 
   <TextView
+      android:id="@+id/textView"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:text="JANコードを入力またはカメラから読み取ってください。"
+      android:text="@string/text_Input"
       android:textSize="12sp"
       tools:layout_editor_absoluteX="0dp"
-      tools:layout_editor_absoluteY="77dp" />
+      tools:layout_editor_absoluteY="16dp" />
 
   <EditText
+      android:id="@+id/editSearch"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:layout_marginTop="48dp"
       android:inputType="text"
-      tools:layout_editor_absoluteX="0dp"
-      tools:layout_editor_absoluteY="32dp"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"/>
+      app:layout_constraintTop_toTopOf="parent"
+      android:hint="@string/hint_Text"
+      android:autofillHints=""
+      tools:targetApi="o"/>
 
   <Button
       android:id="@+id/btnStart"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginBottom="604dp"
-      android:text="カメラ起動"
+      android:layout_marginBottom="552dp"
+      android:text="@string/btn_Camera"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.947"
@@ -46,15 +50,18 @@
       />
 
   <Button
-      android:id="@+id/btnRegist"
+      android:id="@+id/btnRegister"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginBottom="72dp"
-      android:text="登録"
+      android:text="@string/text_Register"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.916"
       app:backgroundTint="#f5deb3"
       app:layout_constraintStart_toStartOf="parent" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

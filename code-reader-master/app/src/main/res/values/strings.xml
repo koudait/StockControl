@@ -4,6 +4,11 @@
     <string name="cancel">Cancel</string>
     <string name="app_info">App info</string>
 
+    <string name="text_Input">JANコードを入力またはカメラから読み取ってください。</string>
+    <string name="btn_Camera">カメラ起動</string>
+    <string name="text_Register">登録</string>
+    <string name="hint_Text">JANコード</string>
+
     <string name="dialog_title_permission">Please allow permission</string>
     <string name="dialog_message_camera_permission">Couldn\'t access to camera.\nPlease allow permission from \"App Info\", to code scan</string>
     <string name="dialog_title_select_action">Select action</string>

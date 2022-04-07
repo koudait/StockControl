@@ -1,13 +1,8 @@
-/*
- * Copyright (c) 2021 大前良介 (OHMAE Ryosuke)
- *
- * This software is released under the MIT License.
- * http://opensource.org/licenses/MIT
- */
 
 package net.mm2d.codereader
 
 import android.animation.ValueAnimator
+import android.content.Intent
 import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
 import android.os.Bundle
@@ -18,7 +13,6 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.camera.core.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.getSystemService
 import androidx.core.view.isGone
@@ -26,7 +20,7 @@ import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.google.mlkit.vision.barcode.common.Barcode
 import net.mm2d.codereader.code.CodeScanner
-import net.mm2d.codereader.databinding.ActivityMainBinding
+import net.mm2d.codereader.databinding.ActivityCameraBinding
 import net.mm2d.codereader.extension.formatString
 import net.mm2d.codereader.extension.typeString
 import net.mm2d.codereader.permission.CameraPermission
@@ -39,8 +33,8 @@ import net.mm2d.codereader.util.Launcher
 import net.mm2d.codereader.util.ReviewRequester
 import net.mm2d.codereader.util.Updater
 
-class MainActivity : AppCompatActivity(), PermissionDialog.OnCancelListener {
-    private lateinit var binding: ActivityMainBinding
+class CameraScan : AppCompatActivity(), PermissionDialog.OnCancelListener {
+    private lateinit var binding: ActivityCameraBinding
     private lateinit var codeScanner: CodeScanner
     private var started: Boolean = false
     private val launcher = registerForActivityResult(
@@ -48,14 +42,14 @@ class MainActivity : AppCompatActivity(), PermissionDialog.OnCancelListener {
     )
     private lateinit var adapter: ScanResultAdapter
     private lateinit var vibrator: Vibrator
-    private val viewModel: MainActivityViewModel by viewModels()
+    private val viewModel: ScanActivityViewModel by viewModels()
     private val settings: Settings by lazy {
         Settings.get()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
         adapter = ScanResultAdapter(this) {
@@ -158,18 +152,37 @@ class MainActivity : AppCompatActivity(), PermissionDialog.OnCancelListener {
     }
 
     private fun onDetectCode(codes: List<Barcode>) {
-        codes.forEach {
-            val value = it.rawValue ?: return@forEach
-            val result = ScanResult(
-                value = value,
-                type = it.typeString(),
-                format = it.formatString(),
-                isUrl = it.valueType == Barcode.TYPE_URL
-            )
-            if (viewModel.add(result)) {
-                vibrate()
-            }
+        //画面遷移
+        val intent = Intent(this, UnplannedStoredActivity::class.java)
+        //スキャン時バーコード読取が出来なかった場合
+        if (codes.isEmpty()) {
+            return
         }
+        //1個のバーコード読取が出来たとき、バーコード値を取得し現物入庫画面へ戻る
+        if (codes.size == 1) {
+            codes.forEach {
+                val value = it.rawValue ?: return@forEach
+                val result = ScanResult(
+                    value = value,
+                    type = it.typeString(),
+                    format = it.formatString(),
+                    isUrl = it.valueType == Barcode.TYPE_URL
+                )
+                if (viewModel.add(result)) {
+                    vibrate()
+                }
+
+                val intent = Intent()
+                //値を渡す
+                intent.putExtra("barcodeKEY",value.toString())
+                //現物入庫画面に戻る
+                setResult(RESULT_OK, intent)
+                finish();
+            }
+
+
+        }
+
     }
 
     private fun expandList() {
