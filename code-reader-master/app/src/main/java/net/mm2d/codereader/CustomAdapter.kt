@@ -7,28 +7,25 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import net.mm2d.codereader.model.ProductVariation
 
-class CustomAdapter(context: Context, var mProductList: List<Product>) : ArrayAdapter<Product>(context, 0, mProductList) {
+class CustomAdapter(context: Context, var mProductVariationList: List<ProductVariation>) : ArrayAdapter<ProductVariation>(context, 0, mProductVariationList) {
 
     private val layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        var view = convertView
         // Productの取得
-        val Product = mProductList[position]
+        val productVariation:ProductVariation = mProductVariationList[position]
 
         // レイアウトの設定
-        var view = convertView
         if (convertView == null) {
             view = layoutInflater.inflate(R.layout.list_item, parent, false)
         }
 
         // 各Viewの設定
-        val imageView = view?.findViewById<ImageView>(R.id.image)
-        imageView?.setImageResource(Product.imageId)
-
         val name = view?.findViewById<TextView>(R.id.name)
-        name?.text =Product.name
-
+        name?.text = productVariation.product.productName
 
         return view!!
     }
