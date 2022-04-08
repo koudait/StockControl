@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import net.mm2d.codereader.model.ProductVariation
 
-class CustomAdapter(context: Context, var mProductVariationList: List<ProductVariation>) : ArrayAdapter<ProductVariation>(context, 0, mProductVariationList) {
+class ProductVariationAdapter(context: Context, var mProductVariationList: List<ProductVariation>) : ArrayAdapter<ProductVariation>(context, 0, mProductVariationList) {
 
     private val layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
@@ -26,6 +26,10 @@ class CustomAdapter(context: Context, var mProductVariationList: List<ProductVar
         // 各Viewの設定
         val name = view?.findViewById<TextView>(R.id.name)
         name?.text = productVariation.product.productName
+
+        val num = view?.findViewById<TextView>(R.id.countView)
+        num?.text = productVariation.scanNum.toString()
+
 
         return view!!
     }
