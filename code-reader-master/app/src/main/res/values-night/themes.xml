@@ -33,4 +33,5 @@
         <item name="colorSurface">@color/black</item>
         <item name="android:windowBackground">@color/gray_900</item>
     </style>
+
 </resources>

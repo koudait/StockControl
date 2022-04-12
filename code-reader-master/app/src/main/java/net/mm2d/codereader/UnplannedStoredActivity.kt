@@ -3,6 +3,8 @@ package net.mm2d.codereader
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.view.inputmethod.EditorInfo
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import net.mm2d.codereader.model.ProductVariation
@@ -20,6 +22,7 @@ class UnplannedStoredActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_unplannedstored)
 
 
@@ -39,6 +42,13 @@ class UnplannedStoredActivity : AppCompatActivity() {
         listView.adapter = mProductVariationAdapter
 
         val editSearch = findViewById<EditText>(R.id.editSearch)
+        editSearch.setOnEditorActionListener { view, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                //Enterkey押下時処理(一旦finishを仮置き)
+                finish()
+            }
+            return@setOnEditorActionListener true
+        }
 
     }
     //CameraScan画面からバーコード値を取得する処理
