@@ -3,7 +3,6 @@ package net.mm2d.codereader
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
 import android.view.inputmethod.EditorInfo
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -41,11 +40,35 @@ class UnplannedStoredActivity : AppCompatActivity() {
         val listView = findViewById<ListView>(R.id.list_view)
         listView.adapter = mProductVariationAdapter
 
+        //EditText入力イベント処理
         val editSearch = findViewById<EditText>(R.id.editSearch)
+        //Enterkey押下イベント
         editSearch.setOnEditorActionListener { view, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                //Enterkey押下時処理(一旦finishを仮置き)
-                finish()
+                //Edittextからの入力値を設定
+                val textEnter: String = editSearch.getText().toString()
+                //変数codeに代入
+                addProduct(code = textEnter)
+                fun addProduct(code: String) {
+                    val prv = Product.productSearch(code)
+                    var isExist = false
+                    mPrvList.forEach {
+                        if (it.uniqueCode == prv.uniqueCode) {
+                            // 存在した場合はインクリメント
+                            it.scanNum++
+                            isExist = true
+                            return@forEach
+                        }
+                    }
+                    // 存在しない場合はリストに追加
+                    if (!isExist) {
+                        mPrvList.add(prv)
+                        prv.scanNum = 1
+                    }
+                    // アダプターに反映
+                    mProductVariationAdapter.notifyDataSetChanged()
+                }
+
             }
             return@setOnEditorActionListener true
         }
