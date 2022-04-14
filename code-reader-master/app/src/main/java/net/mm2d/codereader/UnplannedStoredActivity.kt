@@ -3,6 +3,7 @@ package net.mm2d.codereader
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.system.Os.remove
 import android.view.inputmethod.EditorInfo
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -65,14 +66,29 @@ class UnplannedStoredActivity : AppCompatActivity() {
                         mPrvList.add(prv)
                         prv.scanNum = 1
                     }
+
+                    //ボタン増減処理
+                    val btnSub: Button =findViewById(R.id.btnSub)
+                    val btnAdd: Button =findViewById(R.id.btnAdd)
+                    val countView: TextView =findViewById(R.id.countView)
+
+                    //-1ボタンを押下した時、リストをクリアにする
+                    btnSub.setOnClickListener {
+                        mPrvList.clear()
+                    }
+
+                    //+1ボタンを押下した時、カウントアップしテキストに表示
+                    btnSub.setOnClickListener {
+                        prv.scanNum++
+                        countView.text = prv.scanNum.toString()
+                    }
+
                     // アダプターに反映
                     mProductVariationAdapter.notifyDataSetChanged()
                 }
-
             }
             return@setOnEditorActionListener true
         }
-
     }
     //CameraScan画面からバーコード値を取得する処理
     override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {

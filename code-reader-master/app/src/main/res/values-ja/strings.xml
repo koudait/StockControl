@@ -4,7 +4,7 @@
     <string name="cancel">キャンセル</string>
     <string name="app_info">アプリ情報</string>
 
-    <string name="text_Input">JANコードを入力またはカメラから読み取ってください。</string>
+    <string name="text_Input">JANコードを入力しEnterキーを押すか、\nカメラからバーコードを読み取ってください。</string>
     <string name="btn_Camera">カメラ起動</string>
     <string name="text_Register">登録</string>
     <string name="hint_Text">JANコード</string>
