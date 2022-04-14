@@ -42,5 +42,7 @@
     <string name="preference_title_version">バージョン</string>
 
     <string name="alert_title_confirm">確認</string>
-    <string name="alert_message_working_back">前の画面に戻ると現在作業中のデータが消えてしまいますがよろしいですか？</string>
+    <string name="alert_message_working_back">前の画面に戻ると現在作業中のデータが消えます。</string>
+    <string name="alert_message_register">現在の作業を完了させてデータを送信します。</string>
+
 </resources>

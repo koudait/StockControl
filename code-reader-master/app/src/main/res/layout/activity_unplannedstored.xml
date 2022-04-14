@@ -32,6 +32,7 @@
           android:autofillHints=""
           android:hint="@string/hint_Text"
           android:inputType="text"
+          android:imeOptions="actionSend"
           tools:targetApi="o" />
 
       <Button

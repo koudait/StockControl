@@ -31,6 +31,6 @@ object Product {
             }
         }
         return dummyProductVariation
-        TODO("商品検索処理を記載する。")
+        //TODO 商品検索処理を記載する。
     }
 }
