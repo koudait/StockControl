@@ -15,19 +15,33 @@ import net.mm2d.codereader.util.Product
 
 class UnplannedStoredActivity : AppCompatActivity() {
 
+    /**
+     * リストビューのアダプター定義
+     */
     lateinit var mProductVariationAdapter: ProductVariationAdapter
+
+    /**
+     * リストビューのリスト定義
+     */
     lateinit var mPrvList: ArrayList<ProductVariation>
 
-    var cameraResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult? ->
+    /**
+     * カメラアクティビティのイベント定義
+     */
+    private var cameraResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult? ->
         if (result?.resultCode == Activity.RESULT_OK) {
             val code = result.data?.getStringExtra("barcodeKEY").toString()
             addProduct(code)
+            // アダプターに反映
+            mProductVariationAdapter.notifyDataSetChanged()
         }
     }
 
+    /**
+     * OnCreate
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_unplannedstored)
 
         // カメラボタンを押下した際にカメラアクティビティを起動する
@@ -37,6 +51,7 @@ class UnplannedStoredActivity : AppCompatActivity() {
             cameraResult.launch(intent)
         }
 
+        // アダプターに設定する商品リストの生成
         mPrvList = arrayListOf()
         // CustomAdapterの生成と設定
         mProductVariationAdapter = ProductVariationAdapter(this, mPrvList, object : IncrementButtonClickListener{
@@ -58,24 +73,32 @@ class UnplannedStoredActivity : AppCompatActivity() {
                 }
             }
         })
+
+        // リストビューの設定
         val listView = findViewById<ListView>(R.id.list_view)
         listView.adapter = mProductVariationAdapter
 
         //EditText入力イベント処理
         val editSearch = findViewById<EditText>(R.id.editSearch)
-        //EnterKey押下イベント
         editSearch.setOnEditorActionListener { view, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 //Edittextからの入力値を設定
                 val textEnter: String = editSearch.text.toString()
                 //変数codeに代入
                 addProduct(textEnter)
+                // アダプターに反映
+                mProductVariationAdapter.notifyDataSetChanged()
                 view.text = ""
             }
             return@setOnEditorActionListener true
         }
     }
 
+    /**
+     * 商品追加
+     *
+     * @args code 追加する商品の商品コード
+     */
     private fun addProduct(code: String) {
         val prv = Product.productSearch(code)
         var isExist = false
@@ -92,8 +115,6 @@ class UnplannedStoredActivity : AppCompatActivity() {
             mPrvList.add(prv)
             prv.scanNum = 1
         }
-        // アダプターに反映
-        mProductVariationAdapter.notifyDataSetChanged()
     }
 
 }
