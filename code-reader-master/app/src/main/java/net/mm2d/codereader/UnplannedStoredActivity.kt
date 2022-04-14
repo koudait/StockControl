@@ -92,12 +92,18 @@ class UnplannedStoredActivity : AppCompatActivity() {
             }
             return@setOnEditorActionListener true
         }
+
+        // 登録ボタン押下イベント処理
+        val btnRegister = findViewById<Button>(R.id.btnRegister)
+        btnRegister.setOnClickListener {
+            TODO("登録処理を記載する。")
+        }
     }
 
     /**
      * 商品追加
      *
-     * @args code 追加する商品の商品コード
+     * @param code 追加する商品の商品コード
      */
     private fun addProduct(code: String) {
         val prv = Product.productSearch(code)
