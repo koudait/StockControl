@@ -6,6 +6,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.widget.*
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import net.mm2d.codereader.model.ProductVariation
 import net.mm2d.codereader.util.Product
@@ -16,8 +18,11 @@ class UnplannedStoredActivity : AppCompatActivity() {
     lateinit var mProductVariationAdapter: ProductVariationAdapter
     lateinit var mPrvList: ArrayList<ProductVariation>
 
-    companion object {
-        const val RESULT_ACTIVITY = 1000
+    var cameraResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult? ->
+        if (result?.resultCode == Activity.RESULT_OK) {
+            val code = result.data?.getStringExtra("barcodeKEY").toString()
+            addProduct(code)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,14 +30,11 @@ class UnplannedStoredActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_unplannedstored)
 
-
-        //１）Viewの取得
-        val btnStart :Button =findViewById(R.id.btnStart)
-
-        //２）ボタンを押したらスキャン画面へ
+        // カメラボタンを押下した際にカメラアクティビティを起動する
+        val btnStart :Button = findViewById(R.id.btnStart)
         btnStart.setOnClickListener {
             val intent = Intent(this,CameraScan::class.java)
-            startActivityForResult(intent, RESULT_ACTIVITY)
+            cameraResult.launch(intent)
         }
 
         mPrvList = arrayListOf()
@@ -71,16 +73,6 @@ class UnplannedStoredActivity : AppCompatActivity() {
                 view.text = ""
             }
             return@setOnEditorActionListener true
-        }
-    }
-    //CameraScan画面からバーコード値を取得する処理
-    override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
-        super.onActivityResult(requestCode, resultCode, intent)
-        if (resultCode == Activity.RESULT_OK &&
-            requestCode == RESULT_ACTIVITY && intent != null) {
-
-            val code = intent.getStringExtra("barcodeKEY").toString()
-            addProduct(code)
         }
     }
 
