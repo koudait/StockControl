@@ -15,7 +15,7 @@ import net.mm2d.codereader.model.ProductVariation
 import net.mm2d.codereader.util.Product
 
 
-class UnplannedStoredActivity : AppCompatActivity() {
+class UnplannedStoredActivity : BasicActivity() {
 
     /**
      * リストビューのアダプター定義
@@ -26,27 +26,6 @@ class UnplannedStoredActivity : AppCompatActivity() {
      * リストビューのリスト定義
      */
     lateinit var mPrvList: ArrayList<ProductVariation>
-
-    /**
-     * サウンドプール
-     */
-    lateinit var soundPool: SoundPool
-
-    /**
-     * 成功音
-     */
-    private var soundSuccess = 0
-
-    /**
-     * スキャン音
-     */
-    private var soundScan = 0
-
-    /**
-     * エラー音
-     */
-    private var soundError = 0
-
 
     /**
      * カメラアクティビティのイベント定義
@@ -67,29 +46,12 @@ class UnplannedStoredActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_unplannedstored)
 
-        //region サウンドの設定
-        val audioAttributes = AudioAttributes.Builder()
-            // USAGE_MEDIA
-            // USAGE_GAME
-            .setUsage(AudioAttributes.USAGE_GAME)
-            // CONTENT_TYPE_MUSIC
-            // CONTENT_TYPE_SPEECH, etc.
-            .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
-            .build()
-        soundPool = SoundPool.Builder()
-            .setAudioAttributes(audioAttributes)
-            .setMaxStreams(2)
-            .build()
-        soundSuccess = soundPool.load(this, R.raw.sound_success, 1)
-        soundScan = soundPool.load(this, R.raw.sound_scan, 1)
-
         // カメラボタンを押下した際にカメラアクティビティを起動する
         val btnStart :Button = findViewById(R.id.btnStart)
         btnStart.setOnClickListener {
             val intent = Intent(this,CameraScan::class.java)
             cameraResult.launch(intent)
         }
-        //endregion
 
         //region リスト及びアダプターの設定
         mPrvList = arrayListOf()
