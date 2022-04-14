@@ -40,7 +40,7 @@
     <string name="preference_category_information">Information</string>
     <string name="preference_title_version">Version</string>
 
-
-
+    <string name="alert_title_confirm">Confirm</string>
+    <string name="alert_message_working_back">If you return to the previous screen, the data you are currently working on will be lost. Is it okay?</string>
 
 </resources>

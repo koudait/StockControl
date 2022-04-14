@@ -1,9 +1,9 @@
 package net.mm2d.codereader
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.system.Os.remove
 import android.view.inputmethod.EditorInfo
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -37,7 +37,25 @@ class UnplannedStoredActivity : AppCompatActivity() {
 
         mPrvList = arrayListOf()
         // CustomAdapterの生成と設定
-        mProductVariationAdapter = ProductVariationAdapter(this, mPrvList)
+        mProductVariationAdapter = ProductVariationAdapter(this, mPrvList, object : IncrementButtonClickListener{
+            override fun onIncrementButtonClick(item: ProductVariation) {
+                if (item.scanNum == 0) {
+                    // 削除確認ダイアログを表示
+                    AlertDialog.Builder(this@UnplannedStoredActivity)
+                        .setTitle(R.string.alert_title_confirm)
+                        .setMessage(R.string.alert_message_working_back)
+                        .setPositiveButton("OK") { _, _ ->
+                            mPrvList.remove(item)
+                            mProductVariationAdapter.notifyDataSetChanged()
+                        }
+                        .setNegativeButton("Cancel") { _, _ ->
+                            item.scanNum++
+                            mProductVariationAdapter.notifyDataSetChanged()
+                        }
+                        .show()
+                }
+            }
+        })
         val listView = findViewById<ListView>(R.id.list_view)
         listView.adapter = mProductVariationAdapter
 
