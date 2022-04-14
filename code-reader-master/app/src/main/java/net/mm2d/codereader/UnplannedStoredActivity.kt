@@ -61,49 +61,14 @@ class UnplannedStoredActivity : AppCompatActivity() {
 
         //EditText入力イベント処理
         val editSearch = findViewById<EditText>(R.id.editSearch)
-        //Enterkey押下イベント
-        editSearch.setOnEditorActionListener { view, actionId, event ->
+        //EnterKey押下イベント
+        editSearch.setOnEditorActionListener { view, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 //Edittextからの入力値を設定
-                val textEnter: String = editSearch.getText().toString()
+                val textEnter: String = editSearch.text.toString()
                 //変数codeに代入
-                addProduct(code = textEnter)
-                fun addProduct(code: String) {
-                    val prv = Product.productSearch(code)
-                    var isExist = false
-                    mPrvList.forEach {
-                        if (it.uniqueCode == prv.uniqueCode) {
-                            // 存在した場合はインクリメント
-                            it.scanNum++
-                            isExist = true
-                            return@forEach
-                        }
-                    }
-                    // 存在しない場合はリストに追加
-                    if (!isExist) {
-                        mPrvList.add(prv)
-                        prv.scanNum = 1
-                    }
-
-                    //ボタン増減処理
-                    val btnSub: Button =findViewById(R.id.btnSub)
-                    val btnAdd: Button =findViewById(R.id.btnAdd)
-                    val countView: TextView =findViewById(R.id.countView)
-
-                    //-1ボタンを押下した時、リストをクリアにする
-                    btnSub.setOnClickListener {
-                        mPrvList.clear()
-                    }
-
-                    //+1ボタンを押下した時、カウントアップしテキストに表示
-                    btnSub.setOnClickListener {
-                        prv.scanNum++
-                        countView.text = prv.scanNum.toString()
-                    }
-
-                    // アダプターに反映
-                    mProductVariationAdapter.notifyDataSetChanged()
-                }
+                addProduct(textEnter)
+                view.text = ""
             }
             return@setOnEditorActionListener true
         }
@@ -111,7 +76,6 @@ class UnplannedStoredActivity : AppCompatActivity() {
     //CameraScan画面からバーコード値を取得する処理
     override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
         super.onActivityResult(requestCode, resultCode, intent)
-
         if (resultCode == Activity.RESULT_OK &&
             requestCode == RESULT_ACTIVITY && intent != null) {
 
