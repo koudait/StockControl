@@ -46,4 +46,7 @@
     <string name="alert_message_register">現在の作業を完了させてデータを送信します。</string>
     <string name="alert_message_product_not_found">商品情報が見つかりません。</string>
 
+    <string name="increment_minus">-</string>
+    <string name="increment_plus">+</string>
+
 </resources>

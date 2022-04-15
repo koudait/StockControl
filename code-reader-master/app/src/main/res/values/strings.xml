@@ -45,4 +45,7 @@
     <string name="alert_message_register">Complete the current work and send the data.</string>
     <string name="alert_message_product_not_found">Product is not found.</string>
 
+    <string name="increment_minus">-</string>
+    <string name="increment_plus">+</string>
+
 </resources>

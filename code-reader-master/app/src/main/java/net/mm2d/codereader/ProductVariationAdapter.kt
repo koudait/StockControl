@@ -24,8 +24,11 @@ class ProductVariationAdapter(context: Context, private var mProductVariationLis
         }
 
         // 各Viewの設定
-        val name = view?.findViewById<TextView>(R.id.name)
-        name?.text = productVariation.product.productName
+        view?.findViewById<TextView>(R.id.name)?.text = productVariation.product.productName
+        view?.findViewById<TextView>(R.id.productCode)?.text = productVariation.product.productCode
+        view?.findViewById<TextView>(R.id.uniqueCode)?.text = productVariation.uniqueCode
+        view?.findViewById<TextView>(R.id.color)?.text = productVariation.colorName
+        view?.findViewById<TextView>(R.id.size)?.text = productVariation.sizeName
 
         val num = view?.findViewById<TextView>(R.id.countView)
         num?.text = productVariation.scanNum.toString()
