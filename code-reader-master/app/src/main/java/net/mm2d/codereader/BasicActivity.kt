@@ -5,7 +5,7 @@ import android.media.SoundPool
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
-open class BasicActivity : AppCompatActivity() {
+open class BasicActivity(private val layoutId: Int) : AppCompatActivity() {
     /**
      * サウンドプール
      */
@@ -28,6 +28,7 @@ open class BasicActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(layoutId)
 
         //region サウンドの設定
         val audioAttributes = AudioAttributes.Builder()

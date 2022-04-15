@@ -3,7 +3,7 @@ package net.mm2d.codereader.util
 import net.mm2d.codereader.model.Product
 import net.mm2d.codereader.model.ProductVariation
 
-object Product {
+object ProductUtils {
 
     /**
      * 商品検索処理
@@ -11,7 +11,7 @@ object Product {
      * @param code 商品コード
      * @return ProductVariation
      */
-    fun productSearch(code: String): ProductVariation {
+    fun productVariationSearch(code: String): ProductVariation {
         val range = (1..3)
         val random = range.random()
         val dummyProduct:Product

@@ -3,29 +3,16 @@ package net.mm2d.codereader
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
-import android.media.AudioAttributes
-import android.media.SoundPool
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.widget.*
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import net.mm2d.codereader.model.ProductVariation
-import net.mm2d.codereader.util.Product
+import net.mm2d.codereader.util.ProductUtils
 
 
-class UnplannedStoredActivity : BasicActivity() {
-
-    /**
-     * リストビューのアダプター定義
-     */
-    lateinit var mProductVariationAdapter: ProductVariationAdapter
-
-    /**
-     * リストビューのリスト定義
-     */
-    lateinit var mPrvList: ArrayList<ProductVariation>
+class UnplannedStoredActivity : ProductVariationListActivity(R.layout.activity_unplannedstored) {
 
     /**
      * カメラアクティビティのイベント定義
@@ -33,7 +20,17 @@ class UnplannedStoredActivity : BasicActivity() {
     private var cameraResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult? ->
         if (result?.resultCode == Activity.RESULT_OK) {
             val code = result.data?.getStringExtra("barcodeKEY").toString()
-            addProduct(code)
+            val prv = ProductUtils.productVariationSearch(code)
+            if (prv == null) {
+                // 商品情報取得失敗時
+                Toast.makeText(this, R.string.alert_message_product_not_found, Toast.LENGTH_LONG).show()
+                soundPool.play(soundError, 1.0f, 1.0f, 0, 0, 1.0f)
+            } else {
+                addProduct(prv)
+                soundPool.play(soundScan, 1.0f, 1.0f, 0, 0, 1.0f)
+                // アダプターに反映
+                mProductVariationAdapter.notifyDataSetChanged()
+            }
             // アダプターに反映
             mProductVariationAdapter.notifyDataSetChanged()
         }
@@ -44,7 +41,6 @@ class UnplannedStoredActivity : BasicActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_unplannedstored)
 
         // カメラボタンを押下した際にカメラアクティビティを起動する
         val btnStart :Button = findViewById(R.id.btnStart)
@@ -53,50 +49,24 @@ class UnplannedStoredActivity : BasicActivity() {
             cameraResult.launch(intent)
         }
 
-        //region リスト及びアダプターの設定
-        mPrvList = arrayListOf()
-        // CustomAdapterの生成と設定
-        mProductVariationAdapter = ProductVariationAdapter(this, mPrvList, object : IncrementButtonClickListener{
-            override fun onIncrementButtonClick(item: ProductVariation) {
-                if (item.scanNum == 0) {
-                    // 削除確認ダイアログを表示
-                    AlertDialog.Builder(this@UnplannedStoredActivity)
-                        .setTitle(R.string.alert_title_confirm)
-                        .setMessage(R.string.alert_message_working_back)
-                        .setPositiveButton("OK") { _, _ ->
-                            mPrvList.remove(item)
-                            mProductVariationAdapter.notifyDataSetChanged()
-                        }
-                        .setNegativeButton("Cancel") { _, _ ->
-                            item.scanNum++
-                            mProductVariationAdapter.notifyDataSetChanged()
-                        }
-                        .show()
-                }
-            }
-        })
-
-        // リストビューの設定
-        val listView = findViewById<ListView>(R.id.list_view)
-        listView.adapter = mProductVariationAdapter
-
-        //endregion
-
         //region 各種イベントの設定
         //EditText入力イベント処理
         val editSearch = findViewById<EditText>(R.id.editSearch)
         editSearch.setOnEditorActionListener { view, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEND) {
                 //Edittextからの入力値を設定
-                val textEnter: String = editSearch.text.toString()
+                val code: String = editSearch.text.toString()
                 //商品追加
-                if (addProduct(textEnter)) {
+                val prv = ProductUtils.productVariationSearch(code)
+                if (prv == null) {
+                    // 商品情報取得失敗時
+                    Toast.makeText(this, R.string.alert_message_product_not_found, Toast.LENGTH_LONG).show()
+                    soundPool.play(soundError, 1.0f, 1.0f, 0, 0, 1.0f)
+                } else {
+                    addProduct(prv)
                     soundPool.play(soundScan, 1.0f, 1.0f, 0, 0, 1.0f)
                     // アダプターに反映
                     mProductVariationAdapter.notifyDataSetChanged()
-                } else {
-                    // 商品情報取得失敗時
-                    soundPool.play(soundError, 1.0f, 1.0f, 0, 0, 1.0f)
                 }
                 view.text = ""
             }
@@ -123,29 +93,4 @@ class UnplannedStoredActivity : BasicActivity() {
         //endregion
 
     }
-
-    /**
-     * 商品追加
-     *
-     * @param code 追加する商品の商品コード
-     */
-    private fun addProduct(code: String): Boolean {
-        val prv = Product.productSearch(code) ?: return false
-        var isExist = false
-        mPrvList.forEach {
-            if (it.uniqueCode == prv.uniqueCode) {
-                // 存在した場合はインクリメント
-                it.scanNum++
-                isExist = true
-                return@forEach
-            }
-        }
-        // 存在しない場合はリストに追加
-        if (!isExist) {
-            mPrvList.add(prv)
-            prv.scanNum = 1
-        }
-        return true
-    }
-
 }

@@ -43,5 +43,6 @@
     <string name="alert_title_confirm">Confirm</string>
     <string name="alert_message_working_back">If you return to the previous screen, the data you are currently working on will be lost. Is it okay?</string>
     <string name="alert_message_register">Complete the current work and send the data.</string>
+    <string name="alert_message_product_not_found">Product is not found.</string>
 
 </resources>
