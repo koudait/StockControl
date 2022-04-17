@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="net.mm2d.codereader"
-    >
+    package="net.mm2d.codereader">
 
     <uses-feature android:name="android.hardware.camera.any" />
 
@@ -27,36 +25,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CodeReader"
         tools:ignore="GoogleAppIndexingWarning"
-        >
+        tools:targetApi="s">
+        <activity
+            android:name=".MenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CameraScan"
+            android:theme="@style/Theme.CodeReader.NoActionBar" />
+
         <activity-alias
             android:name=".StartActivity"
             android:exported="true"
-            android:targetActivity=".CameraScan"
-            >
-        </activity-alias>
+            android:targetActivity=".CameraScan" />
 
-        <activity
-            android:name=".CameraScan"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.CodeReader.NoActionBar"
-            />
         <activity
             android:name=".LicenseActivity"
             android:label="@string/options_menu_license"
-            android:theme="@style/Theme.CodeReader.NoActionBar"
-            />
+            android:theme="@style/Theme.CodeReader.NoActionBar" />
         <activity
             android:name=".SettingsActivity"
             android:label="@string/options_menu_settings"
-            android:theme="@style/Theme.CodeReader.NoActionBar"
-            />
+            android:theme="@style/Theme.CodeReader.NoActionBar" />
         <activity
             android:name=".UnplannedStoredActivity"
             android:label="UnplannedStored"
-            android:theme="@style/Theme.CodeReader.NoActionBar"
-            />
+            android:theme="@style/Theme.CodeReader.NoActionBar" />
         <activity
-
             android:name=".SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.CodeReader.NoActionBar">
@@ -65,7 +59,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
     </application>
+
 </manifest>

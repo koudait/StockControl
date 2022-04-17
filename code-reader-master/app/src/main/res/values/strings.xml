@@ -48,4 +48,19 @@
     <string name="increment_minus">-</string>
     <string name="increment_plus">+</string>
 
+
+    <string name="menuHeader">It is a menu screen</string>
+    <string name="menuFooter">Copyright © MOBERO</string>
+
+    <string name="menuLink01">menu01</string>
+    <string name="menuLink02">menu02</string>
+    <string name="menuLink03">menu03</string>
+    <string name="menuLink04">menu04</string>
+    <string name="menuLink05">menu05</string>
+    <string name="menuLink06">menu06</string>
+
+    <string name="image_Icon">icon01</string>
+
+
+
 </resources>
