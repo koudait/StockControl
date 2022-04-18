@@ -15,11 +15,16 @@ class MenuActivity : AppCompatActivity() {
 
         //１）ImageButtonの取得
         val menu01: ImageButton = findViewById(R.id.menu01)
+        val menu02: ImageButton = findViewById(R.id.menu02)
 
 
         //２）ボタンを押したら次の画面へ
         menu01.setOnClickListener {
             val intent = Intent(this, UnplannedStoredActivity::class.java)
+            startActivity(intent)
+        }
+        menu02.setOnClickListener {
+            val intent = Intent(this, StockSearchActivity::class.java)
             startActivity(intent)
         }
     }

@@ -74,7 +74,7 @@ dependencies {
     implementation("androidx.webkit:webkit:1.4.0")
     implementation("com.google.mlkit:barcode-scanning:17.0.2")
     implementation("com.jakewharton.timber:timber:5.0.1")
-
+    implementation("androidx.core:core-splashscreen:1.0.0-beta02")
 
 
 }
