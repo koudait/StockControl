@@ -24,7 +24,11 @@
         android:roundIcon="@drawable/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.CodeReader"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:targetApi="s">
+        <activity
+            android:name=".MenuActivity"
+            android:exported="false" />
         <activity
             android:name=".StockSearchActivity"
             android:label="StockSearch"
@@ -37,7 +41,7 @@
         <activity-alias
             android:name=".StartActivity"
             android:exported="true"
-            android:targetActivity=".CameraScan"></activity-alias>
+            android:targetActivity=".CameraScan" />
 
         <activity
             android:name=".LicenseActivity"

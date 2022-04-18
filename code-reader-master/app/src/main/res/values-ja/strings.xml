@@ -50,4 +50,16 @@
     <string name="increment_plus">+</string>
     <string name="hint_input_text_jan_loc_code">JANコード or ロケコード</string>
 
+    <string name="menuHeader">メニュー画面</string>
+    <string name="menuFooter">Copyright © MOBERO</string>
+
+    <string name="menuLink01">メニュー01</string>
+    <string name="menuLink02">メニュー02</string>
+    <string name="menuLink03">メニュー03</string>
+    <string name="menuLink04">メニュー04</string>
+    <string name="menuLink05">メニュー05</string>
+    <string name="menuLink06">メニュー06</string>
+
+    <string name="image_Icon">icon01</string>
+
 </resources>

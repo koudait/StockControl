@@ -4,13 +4,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 
 
 class SplashActivity : AppCompatActivity() {
+
     val handler = Handler()
     val spHandler = SplashHandler()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         setContentView(R.layout.activity_splash)
     }
     override fun onResume() {
@@ -27,7 +30,7 @@ class SplashActivity : AppCompatActivity() {
     inner class SplashHandler : Runnable {
         override fun run() {
             //画面遷移
-            intent = Intent(this@SplashActivity, UnplannedStoredActivity::class.java)
+            intent = Intent(this@SplashActivity, MenuActivity::class.java)
             startActivity(intent)
             //アクティビティを破棄する
             this@SplashActivity.finish()
