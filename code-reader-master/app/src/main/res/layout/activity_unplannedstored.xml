@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".UnplannedStoredActivity">
 
-
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
@@ -16,7 +15,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/text_Input"
+        android:text="@string/text_input"
         android:textSize="16sp" />
 
     <LinearLayout
@@ -30,7 +29,7 @@
           android:layout_height="wrap_content"
           android:layout_weight="1"
           android:autofillHints=""
-          android:hint="@string/hint_Text"
+          android:hint="@string/hint_input_text_jan"
           android:inputType="text"
           android:imeOptions="actionSend"
           tools:targetApi="o" />
@@ -40,7 +39,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_weight="2"
-          android:text="@string/btn_Camera" />
+          android:text="@string/btn_camera" />
     </LinearLayout>
 
     <ListView
@@ -58,7 +57,7 @@
           android:id="@+id/btnRegister"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          android:text="@string/text_Register"
+          android:text="@string/text_register"
           app:backgroundTint="#a18538" />
     </LinearLayout>
 

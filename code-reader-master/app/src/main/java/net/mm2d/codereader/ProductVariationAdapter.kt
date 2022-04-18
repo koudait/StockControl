@@ -9,7 +9,7 @@ import android.widget.Button
 import android.widget.TextView
 import net.mm2d.codereader.model.ProductVariation
 
-class ProductVariationAdapter(context: Context, private var mProductVariationList: List<ProductVariation>, private var incrementButtonClickListener: IncrementButtonClickListener) : ArrayAdapter<ProductVariation>(context, 0, mProductVariationList) {
+class ProductVariationAdapter(context: Context, private var mProductVariationList: List<ProductVariation>, private var incrementButtonClickListener: IncrementButtonClickListener, private var isScan: Boolean = false) : ArrayAdapter<ProductVariation>(context, 0, mProductVariationList) {
 
     private val layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
@@ -45,10 +45,18 @@ class ProductVariationAdapter(context: Context, private var mProductVariationLis
             this@ProductVariationAdapter.notifyDataSetChanged()
             incrementButtonClickListener.onIncrementButtonClick(productVariation)
         }
+
+        if (isScan) {
+            view?.findViewById<Button>(R.id.btnAdd)?.visibility = View.VISIBLE
+            view?.findViewById<Button>(R.id.btnSub)?.visibility = View.VISIBLE
+        } else {
+            view?.findViewById<Button>(R.id.btnAdd)?.visibility = View.GONE
+            view?.findViewById<Button>(R.id.btnSub)?.visibility = View.GONE
+        }
         return view!!
     }
 }
 
 interface IncrementButtonClickListener {
-    fun onIncrementButtonClick(item: ProductVariation)
+    fun onIncrementButtonClick(prv: ProductVariation)
 }

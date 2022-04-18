@@ -4,10 +4,11 @@
     <string name="cancel">Cancel</string>
     <string name="app_info">App info</string>
 
-    <string name="text_Input">Enter the JAN code or scan it from the camera.</string>
-    <string name="btn_Camera">Camera</string>
-    <string name="text_Register">Register</string>
-    <string name="hint_Text">JAN code</string>
+    <string name="text_input">Enter the JAN code or scan it from the camera.</string>
+    <string name="btn_camera">Camera</string>
+    <string name="text_register">Register</string>
+    <string name="hint_input_text_jan">JAN code</string>
+    <string name="hint_input_text_jan_loc_code">JAN code or Location code</string>
 
     <string name="dialog_title_permission">Please allow permission</string>
     <string name="dialog_message_camera_permission">Couldn\'t access to camera.\nPlease allow permission from \"App Info\", to code scan</string>

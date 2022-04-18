@@ -104,7 +104,8 @@
                 android:layout_gravity="center_vertical"
                 android:padding="@dimen/padding_SSS"
                 android:text="@string/increment_minus"
-                android:textSize="@dimen/font_M" />
+                android:textSize="@dimen/font_M"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/countView"
@@ -121,7 +122,8 @@
                 android:layout_gravity="center_vertical"
                 android:padding="@dimen/padding_SSS"
                 android:text="@string/increment_plus"
-                android:textSize="@dimen/font_M" />
+                android:textSize="@dimen/font_M"
+                android:visibility="gone" />
         </LinearLayout>
 
     </LinearLayout>
