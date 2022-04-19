@@ -3,7 +3,7 @@ package net.mm2d.codereader
 import android.os.Bundle
 import net.mm2d.codereader.model.ProductVariation
 
-open class ScanProductVariationActivity(layoutId: Int): ProductVariationListActivity(layoutId), ProductVariationListActivity.IScanListener {
+open class ScanProductVariationActivity(layoutId: Int): ProductVariationListActivity(layoutId, isScan = true), ProductVariationListActivity.IScanListener {
     /**
      * OnCreate
      */

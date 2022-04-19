@@ -13,7 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import net.mm2d.codereader.model.ProductVariation
 import net.mm2d.codereader.util.ProductUtils
 
-open class ProductVariationListActivity(layoutId: Int) : BasicActivity(layoutId) {
+open class ProductVariationListActivity(layoutId: Int, val isScan: Boolean =false) : BasicActivity(layoutId) {
     /**
      * リストビューのアダプター定義
      */
@@ -94,7 +94,7 @@ open class ProductVariationListActivity(layoutId: Int) : BasicActivity(layoutId)
                         .show()
                 }
             }
-        })
+        }, isScan)
 
         // リストビューの設定
         findViewById<ListView>(R.id.list_view).adapter = mProductVariationAdapter
