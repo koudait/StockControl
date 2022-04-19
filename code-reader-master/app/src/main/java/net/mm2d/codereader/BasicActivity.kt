@@ -26,6 +26,11 @@ open class BasicActivity(private val layoutId: Int) : AppCompatActivity() {
      */
     var soundError = 0
 
+    /**
+     * アラート音
+     */
+    var soundAlert = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layoutId)
@@ -45,6 +50,8 @@ open class BasicActivity(private val layoutId: Int) : AppCompatActivity() {
             .build()
         soundSuccess = soundPool.load(this, R.raw.sound_success, 1)
         soundScan = soundPool.load(this, R.raw.sound_scan, 1)
+        soundError = soundPool.load(this, R.raw.sound_error, 1)
+        soundAlert = soundPool.load(this, R.raw.sound_alert, 1)
 
         //endregion
 

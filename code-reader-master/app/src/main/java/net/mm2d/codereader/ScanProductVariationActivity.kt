@@ -15,18 +15,17 @@ open class ScanProductVariationActivity(layoutId: Int): ProductVariationListActi
     }
 
     override fun onProductVariationSearchSuccess(prv: ProductVariation) {
-        addProduct(prv)
     }
 
     override fun onProductVariationListItemDeleteCancel(prv: ProductVariation) {
         prv.scanNum++
     }
 
-    override fun onProductVariationAddSuccess(prv: ProductVariation) {
-        addProduct(prv)
+    override fun onProductVariationListAddSuccess(prv: ProductVariation) {
+        prv.scanNum++
     }
 
-    override fun onExistProductVariationAdded(prv: ProductVariation) {
-        prv.scanNum++
+    override fun onProductVariationExisted(existedPrv: ProductVariation) {
+        existedPrv.scanNum++
     }
 }

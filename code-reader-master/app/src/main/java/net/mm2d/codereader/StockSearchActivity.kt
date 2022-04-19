@@ -26,9 +26,9 @@ class StockSearchActivity : ProductVariationListActivity(R.layout.activity_stock
     override fun onProductVariationListItemDeleteCancel(prv: ProductVariation) {
     }
 
-    override fun onProductVariationAddSuccess(prv: ProductVariation) {
+    override fun onProductVariationListAddSuccess(prv: ProductVariation) {
     }
 
-    override fun onExistProductVariationAdded(prv: ProductVariation) {
+    override fun onProductVariationExisted(existedPrv: ProductVariation) {
     }
 }

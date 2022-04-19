@@ -25,10 +25,25 @@ open class ProductVariationListActivity(layoutId: Int, val isScan: Boolean =fals
     lateinit var mPrvList: ArrayList<ProductVariation>
 
     interface IScanListener {
+        /**
+         * 検索処理に成功した場合に呼ばれるイベント
+         */
         fun onProductVariationSearchSuccess(prv: ProductVariation)
+
+        /**
+         * 商品バリエーションリストのアイテム削除をキャンセルした場合に呼ばれるイベント
+         */
         fun onProductVariationListItemDeleteCancel(prv: ProductVariation)
-        fun onProductVariationAddSuccess(prv: ProductVariation)
-        fun onExistProductVariationAdded(prv: ProductVariation)
+
+        /**
+         * 商品バリエーションリストへの追加が成功した場合に呼ばれるイベント
+         */
+        fun onProductVariationListAddSuccess(prv: ProductVariation)
+
+        /**
+         * 商品追加時に商品が既に存在した場合に呼ばれるイベント
+         */
+        fun onProductVariationExisted(existedPrv: ProductVariation)
     }
 
     private lateinit var scanListener: IScanListener
@@ -43,25 +58,7 @@ open class ProductVariationListActivity(layoutId: Int, val isScan: Boolean =fals
             ActivityResultContracts.StartActivityForResult(),
             fun(result: ActivityResult?) {
                 if (result?.resultCode == RESULT_OK) {
-                    val code = result.data?.getStringExtra("barcodeKEY").toString()
-                    val prv = ProductUtils.productVariationSearch(code)
-                    if (prv == null) {
-                        // 商品情報取得失敗時
-                        Toast.makeText(
-                            this,
-                            R.string.alert_message_product_not_found,
-                            Toast.LENGTH_LONG
-                        ).show()
-                        soundPool.play(soundError, 1.0f, 1.0f, 0, 0, 1.0f)
-                    } else {
-                        addProduct(prv)
-                        scanListener.onProductVariationSearchSuccess(prv)
-                        soundPool.play(soundScan, 1.0f, 1.0f, 0, 0, 1.0f)
-                        // アダプターに反映
-                        mProductVariationAdapter.notifyDataSetChanged()
-                    }
-                    // アダプターに反映
-                    mProductVariationAdapter.notifyDataSetChanged()
+                    searchProductVariation(result.data?.getStringExtra("barcodeKEY").toString())
                 }
             })
 
@@ -114,20 +111,8 @@ open class ProductVariationListActivity(layoutId: Int, val isScan: Boolean =fals
         val searchTextBox = findViewById<EditText>(R.id.editSearch)
         searchTextBox.setOnEditorActionListener { view, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEND) {
-                //Edittextからの入力値を設定
-                val code: String = searchTextBox.text.toString()
                 //商品追加
-                val prv = ProductUtils.productVariationSearch(code)
-                if (prv == null) {
-                    // 商品情報取得失敗時
-                    Toast.makeText(this, R.string.alert_message_product_not_found, Toast.LENGTH_LONG).show()
-                    soundPool.play(soundError, 1.0f, 1.0f, 0, 0, 1.0f)
-                } else {
-                    addProduct(prv)
-                    soundPool.play(soundScan, 1.0f, 1.0f, 0, 0, 1.0f)
-                    // アダプターに反映
-                    mProductVariationAdapter.notifyDataSetChanged()
-                }
+                searchProductVariation(searchTextBox.text.toString())
                 view.text = ""
             }
             return@setOnEditorActionListener true
@@ -136,26 +121,56 @@ open class ProductVariationListActivity(layoutId: Int, val isScan: Boolean =fals
         //endregion
     }
 
+    private fun searchProductVariation(code: String) {
+        val prv = ProductUtils.productVariationSearch(code)
+        if (prv == null) {
+            // 商品情報取得失敗時
+            Toast.makeText(
+                this,
+                R.string.alert_message_product_not_found,
+                Toast.LENGTH_LONG
+            ).show()
+            soundPool.play(soundAlert, 1.0f, 1.0f, 0, 0, 1.0f)
+        } else {
+            val existedPrv = addProductVariationList(prv)
+            if (existedPrv == null) {
+                // 商品バリエーションリストへの追加に成功した場合に呼び出す
+                scanListener.onProductVariationListAddSuccess(prv)
+            } else {
+                // 商品バリエーションリストへの追加時に商品が既に存在した場合に呼び出す
+                scanListener.onProductVariationExisted(existedPrv)
+            }
+            scanListener.onProductVariationSearchSuccess(prv)
+            soundPool.play(soundScan, 1.0f, 1.0f, 0, 0, 1.0f)
+        }
+        // アダプターに反映
+        mProductVariationAdapter.notifyDataSetChanged()
+    }
+
     /**
      * 商品追加
      *
      * @param prv 商品バリエーション
+     * @return
      */
-    fun addProduct(prv: ProductVariation) {
-        var isExist = false
+    private fun addProductVariationList(prv: ProductVariation): ProductVariation? {
         mPrvList.forEach {
             if (it.uniqueCode == prv.uniqueCode) {
-                // 存在した場合はインクリメント
-                scanListener.onExistProductVariationAdded(it)
-                isExist = true
-                return@forEach
+                // 存在した場合はリストに追加せず処理を終了する
+                return it
             }
         }
         // 存在しない場合はリストに追加
-        if (!isExist) {
-            mPrvList.add(prv)
-            prv.scanNum = 1
-        }
+        mPrvList.add(prv)
+        return null
+    }
+
+    /**
+     * 商品加算
+     *
+     */
+    fun incrementProductVariation(prv: ProductVariation) {
+
     }
 
 }

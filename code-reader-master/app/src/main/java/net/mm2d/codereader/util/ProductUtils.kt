@@ -11,11 +11,11 @@ object ProductUtils {
      * @param code 商品コード
      * @return ProductVariation
      */
-    fun productVariationSearch(code: String): ProductVariation {
-        val range = (1..3)
+    fun productVariationSearch(code: String): ProductVariation? {
+        val range = (1..4)
         val random = range.random()
         val dummyProduct:Product
-        val dummyProductVariation:ProductVariation
+        var dummyProductVariation: ProductVariation? = null
         when (random) {
             1 -> {
                 dummyProduct = Product("1", "BLOOD", "ブラッドハウンドTシャツ")
@@ -25,7 +25,7 @@ object ProductUtils {
                 dummyProduct = Product("1", "RACE", "レイスTシャツ")
                 dummyProductVariation = ProductVariation("RACE001", dummyProduct, "Sサイズ", "赤")
             }
-            else -> {
+            3 -> {
                 dummyProduct = Product("1", "GIBRALTAL", "ジブラルタルTシャツ")
                 dummyProductVariation = ProductVariation("GIBRALTAL001", dummyProduct, "Sサイズ", "赤")
             }
