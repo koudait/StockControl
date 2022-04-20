@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import net.mm2d.codereader.model.ProductVariation
+import net.mm2d.codereader.model.Stock
 import net.mm2d.codereader.util.ProductUtils
 
 open class ProductVariationListActivity(layoutId: Int, val isScan: Boolean =false) : BasicActivity(layoutId) {
@@ -24,21 +25,23 @@ open class ProductVariationListActivity(layoutId: Int, val isScan: Boolean =fals
      */
     lateinit var mPrvList: ArrayList<ProductVariation>
 
-    interface IScanListener {
+    interface IListListener {
+        /**
+         * リストアイテムの削除がキャンセルされた場合に呼び出されるイベント
+         */
+        fun onListItemDeleteCancel(item: Any)
+
+        /**
+         * リストへの追加が成功した場合に呼ばれるイベント
+         */
+        fun onListAdded(item: Any)
+    }
+
+    interface IProductVariationListener {
         /**
          * 検索処理に成功した場合に呼ばれるイベント
          */
         fun onProductVariationSearchSuccess(prv: ProductVariation)
-
-        /**
-         * 商品バリエーションリストのアイテム削除をキャンセルした場合に呼ばれるイベント
-         */
-        fun onProductVariationListItemDeleteCancel(prv: ProductVariation)
-
-        /**
-         * 商品バリエーションリストへの追加が成功した場合に呼ばれるイベント
-         */
-        fun onProductVariationListAddSuccess(prv: ProductVariation)
 
         /**
          * 商品追加時に商品が既に存在した場合に呼ばれるイベント
@@ -46,9 +49,27 @@ open class ProductVariationListActivity(layoutId: Int, val isScan: Boolean =fals
         fun onProductVariationExisted(existedPrv: ProductVariation)
     }
 
-    private lateinit var scanListener: IScanListener
-    fun setScanListener(scanListener: IScanListener) {
-        this.scanListener = scanListener
+    interface IStockListener {
+        /**
+         * 検索処理に成功した場合に呼ばれるイベント
+         */
+        fun onStockSearchSuccess(stock: Stock)
+    }
+
+    private lateinit var productVariationListener: IProductVariationListener
+    private lateinit var listListener: IListListener
+    private lateinit var stockListener: IStockListener
+
+    fun setProductVariationListener(productVariationListener: IProductVariationListener) {
+        this.productVariationListener = productVariationListener
+    }
+
+    fun setListListener(listener: IListListener) {
+        this.listListener = listener
+    }
+
+    fun setStockListener(listener: IStockListener) {
+        this.stockListener = listener
     }
     /**
      * カメラアクティビティのイベント定義
@@ -85,7 +106,7 @@ open class ProductVariationListActivity(layoutId: Int, val isScan: Boolean =fals
                             mProductVariationAdapter.notifyDataSetChanged()
                         }
                         .setNegativeButton("Cancel") { _, _ ->
-                            scanListener.onProductVariationListItemDeleteCancel(prv)
+                            listListener.onListItemDeleteCancel(prv)
                             mProductVariationAdapter.notifyDataSetChanged()
                         }
                         .show()
@@ -122,7 +143,7 @@ open class ProductVariationListActivity(layoutId: Int, val isScan: Boolean =fals
     }
 
     private fun searchProductVariation(code: String) {
-        val prv = ProductUtils.productVariationSearch(code)
+        val prv = ProductUtils.searchProductVariation(code)
         if (prv == null) {
             // 商品情報取得失敗時
             Toast.makeText(
@@ -135,12 +156,12 @@ open class ProductVariationListActivity(layoutId: Int, val isScan: Boolean =fals
             val existedPrv = addProductVariationList(prv)
             if (existedPrv == null) {
                 // 商品バリエーションリストへの追加に成功した場合に呼び出す
-                scanListener.onProductVariationListAddSuccess(prv)
+                listListener.onListAdded(prv)
             } else {
                 // 商品バリエーションリストへの追加時に商品が既に存在した場合に呼び出す
-                scanListener.onProductVariationExisted(existedPrv)
+                productVariationListener.onProductVariationExisted(existedPrv)
             }
-            scanListener.onProductVariationSearchSuccess(prv)
+            productVariationListener.onProductVariationSearchSuccess(prv)
             soundPool.play(soundScan, 1.0f, 1.0f, 0, 0, 1.0f)
         }
         // アダプターに反映
@@ -164,13 +185,4 @@ open class ProductVariationListActivity(layoutId: Int, val isScan: Boolean =fals
         mPrvList.add(prv)
         return null
     }
-
-    /**
-     * 商品加算
-     *
-     */
-    fun incrementProductVariation(prv: ProductVariation) {
-
-    }
-
 }

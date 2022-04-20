@@ -1,12 +1,8 @@
 package net.mm2d.codereader
 
 import android.app.AlertDialog
-import android.content.Intent
 import android.os.Bundle
-import android.view.inputmethod.EditorInfo
 import android.widget.*
-import net.mm2d.codereader.model.ProductVariation
-import net.mm2d.codereader.util.ProductUtils
 
 
 class UnplannedStoredActivity : ScanProductVariationActivity(R.layout.activity_unplannedstored) {
