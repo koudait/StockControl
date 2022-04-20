@@ -27,6 +27,14 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="s">
         <activity
+            android:name=".NewAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.CodeReader.NoActionBar" />
+        <activity
             android:name=".MenuActivity"
             android:exported="false" />
         <activity
