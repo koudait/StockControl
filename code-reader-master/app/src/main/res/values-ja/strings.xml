@@ -64,7 +64,7 @@
 
     <string name="login_header">ログイン画面</string>
 
-    <string name="hint_id">id</string>
+    <string name="hint_id">ログインID</string>
     <string name="hint_password">パスワード</string>
     <string name="login_message">ログイン</string>
     <string name="newaccount_message">アカウント新規作成はこちらから</string>
@@ -81,18 +81,18 @@
     <string name="mailaddress01">メールアドレス</string>
     <string name="hint_mail01">メールアドレス</string>
 
-    <string name="password01">password</string>
-    <string name="hint_password01">password</string>
+    <string name="password01">パスワード</string>
+    <string name="hint_password01">パスワード</string>
 
-    <string name="password02">password</string>
-    <string name="hint_password02">password(確認用)</string>
+    <string name="password02">パスワード</string>
+    <string name="hint_password02">パスワード(確認用)</string>
 
     <string name="address01">企業住所1</string>
-    <string name="hint_address01">都道府県 市区町村</string>
+    <string name="hint_address01">(企業住所)都道府県 市区町村</string>
     <string name="address02">企業住所2</string>
-    <string name="hint_address02">番地</string>
+    <string name="hint_address02">(企業住所)番地</string>
     <string name="address03">企業住所3</string>
-    <string name="hint_address03">建物名・部屋番号</string>
+    <string name="hint_address03">(企業住所)建物名・部屋番号</string>
 
     <string name="create_message">新規作成</string>
 

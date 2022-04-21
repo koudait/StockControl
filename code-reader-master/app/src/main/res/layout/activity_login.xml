@@ -29,6 +29,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/hint_id"
             android:importantForAutofill="no"
+            android:inputType="text"
              />
 
         <EditText
@@ -37,6 +38,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/hint_password"
             android:importantForAutofill="no"
+            android:inputType="textPassword"
             />
 
 
@@ -62,6 +64,7 @@
             />
 
         <Button
+            android:id="@+id/buttonCreate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#ededf2"
