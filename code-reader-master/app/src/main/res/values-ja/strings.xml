@@ -95,5 +95,6 @@
     <string name="hint_address03">建物名・部屋番号</string>
 
     <string name="create_message">新規作成</string>
+    <string name="alert_message_product_and_location_not_found">商品もロケーションも見つかりませんでした。</string>
 
 </resources>

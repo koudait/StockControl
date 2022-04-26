@@ -14,6 +14,10 @@ open class ScanProductVariationActivity(layoutId: Int): ProductVariationListActi
         setProductVariationListener(this)
     }
 
+    override fun onSearch(prvCode: String) {
+        TODO("Not yet implemented")
+    }
+
     override fun onProductVariationSearchSuccess(prv: ProductVariation) {
     }
 

@@ -9,14 +9,14 @@ import android.widget.Button
 import android.widget.TextView
 import net.mm2d.codereader.model.ProductVariation
 
-class ProductVariationAdapter(context: Context, private var mProductVariationList: List<ProductVariation>, private var incrementButtonClickListener: IncrementButtonClickListener, private var isScan: Boolean = false) : ArrayAdapter<ProductVariation>(context, 0, mProductVariationList) {
+class ProductVariationAdapter(context: Context, private var mList: List<Any>, private var incrementButtonClickListener: IncrementButtonClickListener, private var isScan: Boolean = false) : ArrayAdapter<Any>(context, 0, mList) {
 
     private val layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var view = convertView
         // Productの取得
-        val productVariation:ProductVariation = mProductVariationList[position]
+        val productVariation:ProductVariation = mList[position] as ProductVariation
 
         // レイアウトの設定
         if (convertView == null) {
@@ -24,8 +24,8 @@ class ProductVariationAdapter(context: Context, private var mProductVariationLis
         }
 
         // 各Viewの設定
-        view?.findViewById<TextView>(R.id.name)?.text = productVariation.product.productName
-        view?.findViewById<TextView>(R.id.productCode)?.text = productVariation.product.productCode
+        view?.findViewById<TextView>(R.id.name)?.text = productVariation.productName
+        view?.findViewById<TextView>(R.id.productCode)?.text = productVariation.productCode
         view?.findViewById<TextView>(R.id.uniqueCode)?.text = productVariation.uniqueCode
         view?.findViewById<TextView>(R.id.color)?.text = productVariation.colorName
         view?.findViewById<TextView>(R.id.size)?.text = productVariation.sizeName

@@ -7,12 +7,10 @@ import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
-import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import net.mm2d.codereader.model.ProductVariation
 import net.mm2d.codereader.model.Stock
-import net.mm2d.codereader.util.ProductUtils
 
 open class ProductVariationListActivity(layoutId: Int, val isScan: Boolean =false) : BasicActivity(layoutId) {
     /**
@@ -23,7 +21,7 @@ open class ProductVariationListActivity(layoutId: Int, val isScan: Boolean =fals
     /**
      * リストビューのリスト定義
      */
-    lateinit var mPrvList: ArrayList<ProductVariation>
+    lateinit var mList: ArrayList<Any>
 
     interface IListListener {
         /**
@@ -39,6 +37,10 @@ open class ProductVariationListActivity(layoutId: Int, val isScan: Boolean =fals
 
     interface IProductVariationListener {
         /**
+         * 検索処理
+         */
+        fun onSearch(prvCode: String)
+        /**
          * 検索処理に成功した場合に呼ばれるイベント
          */
         fun onProductVariationSearchSuccess(prv: ProductVariation)
@@ -50,6 +52,10 @@ open class ProductVariationListActivity(layoutId: Int, val isScan: Boolean =fals
     }
 
     interface IStockListener {
+        /**
+         * 検索処理
+         */
+        fun onSearch(code: String)
         /**
          * 検索処理に成功した場合に呼ばれるイベント
          */
@@ -79,7 +85,9 @@ open class ProductVariationListActivity(layoutId: Int, val isScan: Boolean =fals
             ActivityResultContracts.StartActivityForResult(),
             fun(result: ActivityResult?) {
                 if (result?.resultCode == RESULT_OK) {
-                    searchProductVariation(result.data?.getStringExtra("barcodeKEY").toString())
+                    val code = result.data?.getStringExtra("barcodeKEY").toString()
+                    if (::productVariationListener.isInitialized) productVariationListener.onSearch(code)
+                    if (::stockListener.isInitialized) stockListener.onSearch(code)
                 }
             })
 
@@ -92,9 +100,9 @@ open class ProductVariationListActivity(layoutId: Int, val isScan: Boolean =fals
         //region リスト及びアダプターの設定
 
         // Listの初期化
-        mPrvList = arrayListOf()
+        mList = arrayListOf()
         // CustomAdapterの生成と設定
-        mProductVariationAdapter = ProductVariationAdapter(this, mPrvList, object : IncrementButtonClickListener{
+        mProductVariationAdapter = ProductVariationAdapter(this, mList, object : IncrementButtonClickListener{
             override fun onIncrementButtonClick(prv: ProductVariation) {
                 if (prv.scanNum == 0) {
                     // 削除確認ダイアログを表示
@@ -102,7 +110,7 @@ open class ProductVariationListActivity(layoutId: Int, val isScan: Boolean =fals
                         .setTitle(R.string.alert_title_confirm)
                         .setMessage(R.string.alert_message_working_back)
                         .setPositiveButton("OK") { _, _ ->
-                            mPrvList.remove(prv)
+                            mList.remove(prv)
                             mProductVariationAdapter.notifyDataSetChanged()
                         }
                         .setNegativeButton("Cancel") { _, _ ->
@@ -132,8 +140,9 @@ open class ProductVariationListActivity(layoutId: Int, val isScan: Boolean =fals
         val searchTextBox = findViewById<EditText>(R.id.editSearch)
         searchTextBox.setOnEditorActionListener { view, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEND) {
-                //商品追加
-                searchProductVariation(searchTextBox.text.toString())
+                val code = searchTextBox.text.toString()
+                if (::productVariationListener.isInitialized) productVariationListener.onSearch(code)
+                if (::stockListener.isInitialized) stockListener.onSearch(code)
                 view.text = ""
             }
             return@setOnEditorActionListener true
@@ -142,30 +151,12 @@ open class ProductVariationListActivity(layoutId: Int, val isScan: Boolean =fals
         //endregion
     }
 
-    private fun searchProductVariation(code: String) {
-        val prv = ProductUtils.searchProductVariation(code)
-        if (prv == null) {
-            // 商品情報取得失敗時
-            Toast.makeText(
-                this,
-                R.string.alert_message_product_not_found,
-                Toast.LENGTH_LONG
-            ).show()
-            soundPool.play(soundAlert, 1.0f, 1.0f, 0, 0, 1.0f)
-        } else {
-            val existedPrv = addProductVariationList(prv)
-            if (existedPrv == null) {
-                // 商品バリエーションリストへの追加に成功した場合に呼び出す
-                listListener.onListAdded(prv)
-            } else {
-                // 商品バリエーションリストへの追加時に商品が既に存在した場合に呼び出す
-                productVariationListener.onProductVariationExisted(existedPrv)
-            }
-            productVariationListener.onProductVariationSearchSuccess(prv)
-            soundPool.play(soundScan, 1.0f, 1.0f, 0, 0, 1.0f)
+    fun setList(prvList: ArrayList<Any>) {
+        //mList = prvList
+        mList.clear()
+        for (prv in prvList) {
+            mList.add(prv)
         }
-        // アダプターに反映
-        mProductVariationAdapter.notifyDataSetChanged()
     }
 
     /**
@@ -174,15 +165,17 @@ open class ProductVariationListActivity(layoutId: Int, val isScan: Boolean =fals
      * @param prv 商品バリエーション
      * @return
      */
-    private fun addProductVariationList(prv: ProductVariation): ProductVariation? {
-        mPrvList.forEach {
-            if (it.uniqueCode == prv.uniqueCode) {
-                // 存在した場合はリストに追加せず処理を終了する
-                return it
+    fun addProductVariation(prv: ProductVariation): ProductVariation? {
+        mList.forEach {
+            if (it is ProductVariation) {
+                if (it.uniqueCode == prv.uniqueCode) {
+                    // 存在した場合はリストに追加せず処理を終了する
+                    return it
+                }
             }
         }
         // 存在しない場合はリストに追加
-        mPrvList.add(prv)
+        mList.add(prv)
         return null
     }
 }

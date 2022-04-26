@@ -3,6 +3,7 @@ package net.mm2d.codereader
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 
@@ -30,7 +31,7 @@ class SplashActivity : AppCompatActivity() {
     inner class SplashHandler : Runnable {
         override fun run() {
             //画面遷移
-            intent = Intent(this@SplashActivity, LoginActivity::class.java)
+            intent = Intent(this@SplashActivity, MenuActivity::class.java)
             startActivity(intent)
             //アクティビティを破棄する
             this@SplashActivity.finish()

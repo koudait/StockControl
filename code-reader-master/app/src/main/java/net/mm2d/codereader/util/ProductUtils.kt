@@ -23,40 +23,43 @@ object ProductUtils {
         //TODO ロケ検索処理を記載する
     }
 
-    fun searchStock(prvId: Int, locId: Int): Stock? {
+    fun searchStock(prvId: Int? = null, locId: Int? = null): ArrayList<Any> {
         val param: HashMap<String, Int> = HashMap()
-        param["prv_id"] = prvId
-        param["loc_id"] = locId
+        if (prvId != null) param["prv_id"] = prvId
+        if (locId != null) param["loc_id"] = locId
         //TODO 在庫検索処理を記載する
-        val prv: ProductVariation = getDummyProductVariation() ?: return null
-        val loc: Location = getDummyLocation() ?: return null
-        return Stock(prv, loc, (1..10).random())
+        val stockList = ArrayList<Any>()
+        for (i in 0..5) {
+            val prv: ProductVariation? = getDummyProductVariation()
+            val loc: Location? = getDummyLocation()
+            if (prv == null) continue
+            if (loc == null) continue
+            val stock = Stock(prv.clientCode, prv.productCode, prv.productName, prv.prvId, prv.uniqueCode, prv.sizeName, prv.colorName, loc, (1..10).random())
+            stockList.add(stock)
+        }
+        return stockList
     }
 
     private fun getDummyProductVariation(): ProductVariation? {
-        val range = (1..4)
+        val range = (1..3)
         val random = range.random()
-        val dummyProduct:Product
         var dummyProductVariation: ProductVariation? = null
         when (random) {
             1 -> {
-                dummyProduct = Product("1", "BLOOD", "ブラッドハウンドTシャツ")
-                dummyProductVariation = ProductVariation(1, "BLOOD001", dummyProduct, "Sサイズ", "赤")
+                dummyProductVariation = ProductVariation("1", "BLOOD", "ブラッドハウンドTシャツ", 1, "BLOOD001", "Sサイズ", "赤")
             }
             2 -> {
-                dummyProduct = Product("1", "RACE", "レイスTシャツ")
-                dummyProductVariation = ProductVariation(2, "RACE001", dummyProduct, "Sサイズ", "赤")
+                dummyProductVariation = ProductVariation("1", "RACE", "レイスTシャツ", 2, "RACE001", "Sサイズ", "赤")
             }
             3 -> {
-                dummyProduct = Product("1", "GIBRALTAL", "ジブラルタルTシャツ")
-                dummyProductVariation = ProductVariation(3, "GIBRALTAL001", dummyProduct, "Sサイズ", "赤")
+                dummyProductVariation = ProductVariation("1", "GIBRALTAL", "ジブラルタルTシャツ", 3, "GIBRALTAL001", "Sサイズ", "赤")
             }
         }
         return dummyProductVariation
     }
 
     private fun getDummyLocation(): Location? {
-        val range = (1..4)
+        val range = (1..3)
         val random = range.random()
 
         var dummyLocation: Location? = null

@@ -1,10 +1,13 @@
 package net.mm2d.codereader
 
 import android.os.Bundle
+import android.widget.Toast
+import net.mm2d.codereader.model.Location
 import net.mm2d.codereader.model.ProductVariation
 import net.mm2d.codereader.model.Stock
+import net.mm2d.codereader.util.ProductUtils
 
-class StockSearchActivity : ProductVariationListActivity(R.layout.activity_stock_search), ProductVariationListActivity.IProductVariationListener, ProductVariationListActivity.IListListener, ProductVariationListActivity.IStockListener {
+class StockSearchActivity : ProductVariationListActivity(R.layout.activity_stock_search), ProductVariationListActivity.IListListener, ProductVariationListActivity.IStockListener {
 
     /**
      * OnCreate
@@ -12,20 +15,40 @@ class StockSearchActivity : ProductVariationListActivity(R.layout.activity_stock
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setListListener(this)
-        setProductVariationListener(this)
         setStockListener(this)
-    }
-
-    override fun onProductVariationSearchSuccess(prv: ProductVariation) {
-    }
-
-    override fun onProductVariationExisted(existedPrv: ProductVariation) {
     }
 
     override fun onListItemDeleteCancel(item: Any) {
     }
 
     override fun onListAdded(item: Any) {
+    }
+
+    override fun onSearch(code: String) {
+
+        val prv: ProductVariation? = ProductUtils.searchProductVariation(code)
+        val stockList: ArrayList<Any>
+        if (prv != null) {
+            // 商品がマッチした場合商品コードによる検索とみなす
+            stockList = ProductUtils.searchStock(prvId = prv.prvId)
+            setList(stockList)
+            mProductVariationAdapter.notifyDataSetChanged()
+        } else {
+            val loc: Location? = ProductUtils.searchLocation(code)
+            if (loc != null) {
+                // ロケコードがマッチした場合ロケコードによる検索とみなす
+                stockList = ProductUtils.searchStock(locId = loc.locId)
+                setList(stockList)
+                mProductVariationAdapter.notifyDataSetChanged()
+            } else {
+                Toast.makeText(
+                    this,
+                    R.string.alert_message_product_and_location_not_found,
+                    Toast.LENGTH_LONG
+                ).show()
+                soundPool.play(soundAlert, 1.0f, 1.0f, 0, 0, 1.0f)
+            }
+        }
     }
 
     override fun onStockSearchSuccess(stock: Stock) {
