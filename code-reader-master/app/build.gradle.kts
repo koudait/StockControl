@@ -16,7 +16,7 @@ android {
     compileSdk = 31
 
     defaultConfig {
-        applicationId = "net.mm2d.codereader"
+        applicationId = "com.mobero.stockcontrol"
         minSdk = 23
         targetSdk = 31
         versionCode = versionMajor * 10000 + versionMinor * 100 + versionPatch
