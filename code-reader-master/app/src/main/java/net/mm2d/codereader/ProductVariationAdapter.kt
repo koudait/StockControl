@@ -9,7 +9,7 @@ import android.widget.Button
 import android.widget.TextView
 import net.mm2d.codereader.model.ProductVariation
 
-class ProductVariationAdapter(context: Context, private var mList: List<Any>, private var incrementButtonClickListener: IncrementButtonClickListener, private var isScan: Boolean = false) : ArrayAdapter<Any>(context, 0, mList) {
+class ProductVariationAdapter(context: Context, private var mList: List<Any>, private var incrementButtonClickListener: IncrementButtonClickListener? = null, private var isScan: Boolean = false) : ArrayAdapter<Any>(context, 0, mList) {
 
     private val layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
@@ -37,13 +37,13 @@ class ProductVariationAdapter(context: Context, private var mList: List<Any>, pr
         (view?.findViewById<Button>(R.id.btnSub))?.setOnClickListener {
             productVariation.scanNum--
             this@ProductVariationAdapter.notifyDataSetChanged()
-            incrementButtonClickListener.onIncrementButtonClick(productVariation)
+            incrementButtonClickListener?.onIncrementButtonClick(productVariation)
         }
         // プラスボタンのクリックイベントを設定
         (view?.findViewById<Button>(R.id.btnAdd))?.setOnClickListener {
             productVariation.scanNum++
             this@ProductVariationAdapter.notifyDataSetChanged()
-            incrementButtonClickListener.onIncrementButtonClick(productVariation)
+            incrementButtonClickListener?.onIncrementButtonClick(productVariation)
         }
 
         if (isScan) {

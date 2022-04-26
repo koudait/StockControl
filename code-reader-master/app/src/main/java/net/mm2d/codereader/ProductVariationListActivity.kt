@@ -14,6 +14,11 @@ import net.mm2d.codereader.model.ProductVariation
 import net.mm2d.codereader.model.Stock
 
 open class ProductVariationListActivity(layoutId: Int, var mAdapter: ArrayAdapter<Any>? = null, var mList: ArrayList<Any>? = null, var isScan: Boolean =false) : BasicActivity(layoutId) {
+    init {
+        if (mList == null) {
+            mList = arrayListOf()
+        }
+    }
     interface IListListener {
         /**
          * リストアイテムの削除がキャンセルされた場合に呼び出されるイベント
@@ -53,21 +58,22 @@ open class ProductVariationListActivity(layoutId: Int, var mAdapter: ArrayAdapte
         fun onStockSearchSuccess(stock: Stock)
     }
 
-    private lateinit var productVariationListener: IProductVariationListener
-    private lateinit var listListener: IListListener
-    private lateinit var stockListener: IStockListener
+    private lateinit var mProductVariationListener: IProductVariationListener
+    lateinit var mListListener: IListListener
+    private lateinit var mStockListener: IStockListener
 
     fun setProductVariationListener(productVariationListener: IProductVariationListener) {
-        this.productVariationListener = productVariationListener
+        this.mProductVariationListener = productVariationListener
     }
 
     fun setListListener(listener: IListListener) {
-        this.listListener = listener
+        this.mListListener = listener
     }
 
     fun setStockListener(listener: IStockListener) {
-        this.stockListener = listener
+        this.mStockListener = listener
     }
+
     /**
      * カメラアクティビティのイベント定義
      */
@@ -77,8 +83,8 @@ open class ProductVariationListActivity(layoutId: Int, var mAdapter: ArrayAdapte
             fun(result: ActivityResult?) {
                 if (result?.resultCode == RESULT_OK) {
                     val code = result.data?.getStringExtra("barcodeKEY").toString()
-                    if (::productVariationListener.isInitialized) productVariationListener.onSearch(code)
-                    if (::stockListener.isInitialized) stockListener.onSearch(code)
+                    if (::mProductVariationListener.isInitialized) mProductVariationListener.onSearch(code)
+                    if (::mStockListener.isInitialized) mStockListener.onSearch(code)
                 }
             })
 
@@ -90,10 +96,6 @@ open class ProductVariationListActivity(layoutId: Int, var mAdapter: ArrayAdapte
 
         //region リスト及びアダプターの設定
 
-        // Listの初期化
-        if (mList == null) {
-            mList = arrayListOf()
-        }
         // CustomAdapterの生成と設定
         if (mAdapter == null) {
             mAdapter = ProductVariationAdapter(this, mList!!, object : IncrementButtonClickListener{
@@ -108,7 +110,7 @@ open class ProductVariationListActivity(layoutId: Int, var mAdapter: ArrayAdapte
                                 mAdapter!!.notifyDataSetChanged()
                             }
                             .setNegativeButton("Cancel") { _, _ ->
-                                listListener.onListItemDeleteCancel(prv)
+                                mListListener.onListItemDeleteCancel(prv)
                                 mAdapter!!.notifyDataSetChanged()
                             }
                             .show()
@@ -137,8 +139,8 @@ open class ProductVariationListActivity(layoutId: Int, var mAdapter: ArrayAdapte
         searchTextBox.setOnEditorActionListener { view, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEND) {
                 val code = searchTextBox.text.toString()
-                if (::productVariationListener.isInitialized) productVariationListener.onSearch(code)
-                if (::stockListener.isInitialized) stockListener.onSearch(code)
+                if (::mProductVariationListener.isInitialized) mProductVariationListener.onSearch(code)
+                if (::mStockListener.isInitialized) mStockListener.onSearch(code)
                 view.text = ""
             }
             return@setOnEditorActionListener true

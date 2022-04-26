@@ -7,13 +7,17 @@ import net.mm2d.codereader.model.ProductVariation
 import net.mm2d.codereader.model.Stock
 import net.mm2d.codereader.util.ProductUtils
 
-class StockSearchActivity : ProductVariationListActivity(R.layout.activity_stock_search), ProductVariationListActivity.IListListener, ProductVariationListActivity.IStockListener {
+class StockSearchActivity// 削除確認ダイアログを表示
+    : ProductVariationListActivity(layoutId = R.layout.activity_stock_search), ProductVariationListActivity.IListListener, ProductVariationListActivity.IStockListener {
 
     /**
      * OnCreate
      */
     override fun onCreate(savedInstanceState: Bundle?) {
+        mAdapter = ProductVariationAdapter(this, mList!!, isScan = false)
+
         super.onCreate(savedInstanceState)
+
         setListListener(this)
         setStockListener(this)
     }
