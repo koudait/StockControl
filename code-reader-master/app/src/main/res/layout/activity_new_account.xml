@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -30,6 +29,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/hint_company"
             android:importantForAutofill="no"
+            android:inputType="text"
             />
 
         <EditText
@@ -38,6 +38,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/hint_user"
             android:importantForAutofill="no"
+            android:inputType="text"
             />
 
         <EditText
@@ -46,6 +47,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/hint_mail01"
             android:importantForAutofill="no"
+            android:inputType="text"
             />
 
         <EditText
@@ -54,6 +56,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/hint_password01"
             android:importantForAutofill="no"
+            android:inputType="textPassword"
             />
 
         <EditText
@@ -62,21 +65,16 @@
             android:layout_height="wrap_content"
             android:hint="@string/hint_password02"
             android:importantForAutofill="no"
+            android:inputType="textPassword"
             />
 
-        <EditText
-            android:id="@+id/passwordEdit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_password"
-            android:importantForAutofill="no"
-            />
         <EditText
             android:id="@+id/address01"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/address01"
+            android:hint="@string/hint_address01"
             android:importantForAutofill="no"
+            android:inputType="text"
             />
         <EditText
             android:id="@+id/address02"
@@ -84,6 +82,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/hint_address02"
             android:importantForAutofill="no"
+            android:inputType="text"
             />
         <EditText
             android:id="@+id/address03"
@@ -91,6 +90,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/hint_address03"
             android:importantForAutofill="no"
+            android:inputType="text"
             />
 
         <Button
