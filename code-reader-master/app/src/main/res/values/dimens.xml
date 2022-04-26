@@ -24,4 +24,6 @@
     <dimen name="padding_S">12dp</dimen>
     <dimen name="padding_SS">8dp</dimen>
     <dimen name="padding_SSS">4dp</dimen>
+
+    <dimen name="top_menu_icon_size">100dp</dimen>
 </resources>

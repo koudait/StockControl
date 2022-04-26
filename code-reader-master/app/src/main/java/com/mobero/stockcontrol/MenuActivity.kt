@@ -3,8 +3,7 @@ package com.mobero.stockcontrol
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-
-import android.widget.ImageButton
+import android.widget.Button
 
 class MenuActivity : AppCompatActivity() {
 
@@ -12,18 +11,16 @@ class MenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
+        // ImageButtonの取得
+        val btnUnplannedStore: Button = findViewById(R.id.btn_unplanned_store)
+        val btnStockSearch: Button = findViewById(R.id.btn_stock_search)
 
-        //１）ImageButtonの取得
-        val menu01: ImageButton = findViewById(R.id.menu01)
-        val menu02: ImageButton = findViewById(R.id.menu02)
-
-
-        //２）ボタンを押したら次の画面へ
-        menu01.setOnClickListener {
+        // ボタンを押したら次の画面へ
+        btnUnplannedStore.setOnClickListener {
             val intent = Intent(this, UnplannedStoredActivity::class.java)
             startActivity(intent)
         }
-        menu02.setOnClickListener {
+        btnStockSearch.setOnClickListener {
             val intent = Intent(this, StockSearchActivity::class.java)
             startActivity(intent)
         }

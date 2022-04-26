@@ -95,6 +95,9 @@
     <string name="hint_address03">CompanyAddress(Building name, room number)</string>
 
     <string name="create_message">New Create</string>
+    <string name="func_name_unplanned_store">Unplanned Store</string>
+    <string name="func_name_planned_store">Planned Store</string>
+    <string name="func_name_stock_search">Stock Search</string>
 
 
 </resources>
