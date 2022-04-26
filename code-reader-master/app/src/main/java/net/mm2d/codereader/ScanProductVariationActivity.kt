@@ -1,10 +1,10 @@
 package net.mm2d.codereader
 
 import android.os.Bundle
-import androidx.recyclerview.widget.AsyncListDiffer
 import net.mm2d.codereader.model.ProductVariation
 
-open class ScanProductVariationActivity(layoutId: Int): ProductVariationListActivity(layoutId, isScan = true), ProductVariationListActivity.IProductVariationListener, ProductVariationListActivity.IListListener {
+open class ScanProductVariationActivity(layoutId: Int): ProductVariationListActivity(layoutId = layoutId, isScan = true), ProductVariationListActivity.IProductVariationListener, ProductVariationListActivity.IListListener {
+
     /**
      * OnCreate
      */

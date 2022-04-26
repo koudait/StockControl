@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
@@ -12,17 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import net.mm2d.codereader.model.ProductVariation
 import net.mm2d.codereader.model.Stock
 
-open class ProductVariationListActivity(layoutId: Int, val isScan: Boolean =false) : BasicActivity(layoutId) {
-    /**
-     * リストビューのアダプター定義
-     */
-    lateinit var mProductVariationAdapter: ProductVariationAdapter
-
-    /**
-     * リストビューのリスト定義
-     */
-    lateinit var mList: ArrayList<Any>
-
+open class ProductVariationListActivity(layoutId: Int, var mAdapter: ArrayAdapter<Any>? = null, var mList: ArrayList<Any>? = null, var isScan: Boolean =false) : BasicActivity(layoutId) {
     interface IListListener {
         /**
          * リストアイテムの削除がキャンセルされた場合に呼び出されるイベント
@@ -100,30 +91,35 @@ open class ProductVariationListActivity(layoutId: Int, val isScan: Boolean =fals
         //region リスト及びアダプターの設定
 
         // Listの初期化
-        mList = arrayListOf()
+        if (mList == null) {
+            mList = arrayListOf()
+        }
         // CustomAdapterの生成と設定
-        mProductVariationAdapter = ProductVariationAdapter(this, mList, object : IncrementButtonClickListener{
-            override fun onIncrementButtonClick(prv: ProductVariation) {
-                if (prv.scanNum == 0) {
-                    // 削除確認ダイアログを表示
-                    AlertDialog.Builder(this@ProductVariationListActivity)
-                        .setTitle(R.string.alert_title_confirm)
-                        .setMessage(R.string.alert_message_working_back)
-                        .setPositiveButton("OK") { _, _ ->
-                            mList.remove(prv)
-                            mProductVariationAdapter.notifyDataSetChanged()
-                        }
-                        .setNegativeButton("Cancel") { _, _ ->
-                            listListener.onListItemDeleteCancel(prv)
-                            mProductVariationAdapter.notifyDataSetChanged()
-                        }
-                        .show()
+        if (mAdapter == null) {
+            mAdapter = ProductVariationAdapter(this, mList!!, object : IncrementButtonClickListener{
+                override fun onIncrementButtonClick(prv: ProductVariation) {
+                    if (prv.scanNum == 0) {
+                        // 削除確認ダイアログを表示
+                        AlertDialog.Builder(this@ProductVariationListActivity)
+                            .setTitle(R.string.alert_title_confirm)
+                            .setMessage(R.string.alert_message_working_back)
+                            .setPositiveButton("OK") { _, _ ->
+                                mList!!.remove(prv)
+                                mAdapter!!.notifyDataSetChanged()
+                            }
+                            .setNegativeButton("Cancel") { _, _ ->
+                                listListener.onListItemDeleteCancel(prv)
+                                mAdapter!!.notifyDataSetChanged()
+                            }
+                            .show()
+                    }
                 }
-            }
-        }, isScan)
+            }, isScan)
+        }
+
 
         // リストビューの設定
-        findViewById<ListView>(R.id.list_view).adapter = mProductVariationAdapter
+        findViewById<ListView>(R.id.list_view).adapter = mAdapter
 
         //endregion
 
@@ -153,9 +149,9 @@ open class ProductVariationListActivity(layoutId: Int, val isScan: Boolean =fals
 
     fun setList(prvList: ArrayList<Any>) {
         //mList = prvList
-        mList.clear()
+        mList!!.clear()
         for (prv in prvList) {
-            mList.add(prv)
+            mList!!.add(prv)
         }
     }
 
@@ -166,7 +162,7 @@ open class ProductVariationListActivity(layoutId: Int, val isScan: Boolean =fals
      * @return
      */
     fun addProductVariation(prv: ProductVariation): ProductVariation? {
-        mList.forEach {
+        mList!!.forEach {
             if (it is ProductVariation) {
                 if (it.uniqueCode == prv.uniqueCode) {
                     // 存在した場合はリストに追加せず処理を終了する
@@ -175,7 +171,7 @@ open class ProductVariationListActivity(layoutId: Int, val isScan: Boolean =fals
             }
         }
         // 存在しない場合はリストに追加
-        mList.add(prv)
+        mList!!.add(prv)
         return null
     }
 }

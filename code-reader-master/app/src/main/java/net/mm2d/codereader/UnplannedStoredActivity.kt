@@ -23,8 +23,8 @@ class UnplannedStoredActivity : ScanProductVariationActivity(R.layout.activity_u
                 .setTitle(R.string.alert_title_confirm)
                 .setMessage(R.string.alert_message_register)
                 .setPositiveButton("OK") { _, _ ->
-                    mList.clear()
-                    mProductVariationAdapter.notifyDataSetChanged()
+                    mList!!.clear()
+                    mAdapter!!.notifyDataSetChanged()
                     soundPool.play(soundSuccess, 1.0f, 1.0f, 0, 0, 1.0f)
                     //TODO 登録処理を記載する。
                 }
@@ -63,6 +63,6 @@ class UnplannedStoredActivity : ScanProductVariationActivity(R.layout.activity_u
             soundPool.play(soundScan, 1.0f, 1.0f, 0, 0, 1.0f)
         }
         // アダプターに反映
-        mProductVariationAdapter.notifyDataSetChanged()
+        mAdapter!!.notifyDataSetChanged()
     }
 }

@@ -32,14 +32,14 @@ class StockSearchActivity : ProductVariationListActivity(R.layout.activity_stock
             // 商品がマッチした場合商品コードによる検索とみなす
             stockList = ProductUtils.searchStock(prvId = prv.prvId)
             setList(stockList)
-            mProductVariationAdapter.notifyDataSetChanged()
+            mAdapter!!.notifyDataSetChanged()
         } else {
             val loc: Location? = ProductUtils.searchLocation(code)
             if (loc != null) {
                 // ロケコードがマッチした場合ロケコードによる検索とみなす
                 stockList = ProductUtils.searchStock(locId = loc.locId)
                 setList(stockList)
-                mProductVariationAdapter.notifyDataSetChanged()
+                mAdapter!!.notifyDataSetChanged()
             } else {
                 Toast.makeText(
                     this,
