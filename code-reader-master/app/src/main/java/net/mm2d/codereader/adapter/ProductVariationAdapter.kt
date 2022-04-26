@@ -1,4 +1,4 @@
-package net.mm2d.codereader
+package net.mm2d.codereader.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.TextView
+import net.mm2d.codereader.R
 import net.mm2d.codereader.model.ProductVariation
 
 class ProductVariationAdapter(context: Context, private var mList: List<Any>, private var incrementButtonClickListener: IncrementButtonClickListener? = null, private var isScan: Boolean = false) : ArrayAdapter<Any>(context, 0, mList) {

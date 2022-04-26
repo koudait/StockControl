@@ -2,6 +2,7 @@ package net.mm2d.codereader
 
 import android.os.Bundle
 import android.widget.Toast
+import net.mm2d.codereader.adapter.ProductVariationAdapter
 import net.mm2d.codereader.model.Location
 import net.mm2d.codereader.model.ProductVariation
 import net.mm2d.codereader.model.Stock

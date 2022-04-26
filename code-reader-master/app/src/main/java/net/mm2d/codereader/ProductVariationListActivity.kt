@@ -10,6 +10,8 @@ import android.widget.EditText
 import android.widget.ListView
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import net.mm2d.codereader.adapter.IncrementButtonClickListener
+import net.mm2d.codereader.adapter.ProductVariationAdapter
 import net.mm2d.codereader.model.ProductVariation
 import net.mm2d.codereader.model.Stock
 
@@ -98,7 +100,7 @@ open class ProductVariationListActivity(layoutId: Int, var mAdapter: ArrayAdapte
 
         // CustomAdapterの生成と設定
         if (mAdapter == null) {
-            mAdapter = ProductVariationAdapter(this, mList!!, object : IncrementButtonClickListener{
+            mAdapter = ProductVariationAdapter(this, mList!!, object : IncrementButtonClickListener {
                 override fun onIncrementButtonClick(prv: ProductVariation) {
                     if (prv.scanNum == 0) {
                         // 削除確認ダイアログを表示
