@@ -96,8 +96,12 @@
 
     <string name="create_message">新規作成</string>
     <string name="alert_message_product_and_location_not_found">商品もロケーションも見つかりませんでした。</string>
-    <string name="func_name_unplanned_store">現物入庫</string>
-    <string name="func_name_planned_store">予定入庫</string>
+    <string name="func_name_unplanned_store">現物入荷</string>
+    <string name="func_name_planned_store">予定入荷</string>
     <string name="func_name_stock_search">在庫照会</string>
+    <string name="category_name_store">入荷</string>
+    <string name="category_name_ship">出荷</string>
+    <string name="category_name_return">返品</string>
+    <string name="category_name_stock">在庫</string>
 
 </resources>
