@@ -41,6 +41,21 @@
                     android:background="@android:color/transparent"
                     android:drawableTop="@drawable/shape_top_menu_icon_stock"
                     android:text="@string/func_name_unplanned_store" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray_700"
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@drawable/shape_top_menu_icon_none" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray_700"
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@drawable/shape_top_menu_icon_none" />
+
             </LinearLayout>
         </HorizontalScrollView>
     </LinearLayout>
@@ -77,6 +92,20 @@
                     android:background="@android:color/transparent"
                     android:drawableTop="@drawable/shape_top_menu_icon_none"
                     android:text="@string/func_name_unplanned_store" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray_700"
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@drawable/shape_top_menu_icon_none" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray_700"
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@drawable/shape_top_menu_icon_none" />
 
             </LinearLayout>
         </HorizontalScrollView>
@@ -115,6 +144,20 @@
                     android:drawableTop="@drawable/shape_top_menu_icon_none"
                     android:text="@string/func_name_unplanned_store" />
 
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray_700"
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@drawable/shape_top_menu_icon_none" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray_700"
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@drawable/shape_top_menu_icon_none" />
+
             </LinearLayout>
         </HorizontalScrollView>
     </LinearLayout>
@@ -152,6 +195,20 @@
                     android:background="@android:color/transparent"
                     android:drawableTop="@drawable/shape_top_menu_icon_search"
                     android:text="@string/func_name_stock_search" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray_700"
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@drawable/shape_top_menu_icon_none" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray_700"
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@drawable/shape_top_menu_icon_none" />
 
             </LinearLayout>
         </HorizontalScrollView>
