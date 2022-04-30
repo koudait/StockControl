@@ -11,6 +11,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/code-reader-master" />
+            <option value="$PROJECT_DIR$/code-reader-master/app" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

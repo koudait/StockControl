@@ -31,7 +31,7 @@ class SplashActivity : AppCompatActivity() {
     inner class SplashHandler : Runnable {
         override fun run() {
             //画面遷移
-            intent = Intent(this@SplashActivity, MenuActivity::class.java)
+            intent = Intent(this@SplashActivity, LoginActivity::class.java)
             startActivity(intent)
             //アクティビティを破棄する
             this@SplashActivity.finish()
