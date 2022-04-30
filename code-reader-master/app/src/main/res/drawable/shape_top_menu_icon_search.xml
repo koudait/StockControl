@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/shape_top_menu_icon_background" />
+    <item
+        android:width="@dimen/top_menu_icon_size"
+        android:height="@dimen/top_menu_icon_size">
+        <bitmap android:src="@drawable/image_search" />
+    </item>
+</layer-list>

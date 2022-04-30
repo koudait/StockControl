@@ -8,87 +8,154 @@
     android:background="#e1e3e1"
     android:orientation="vertical">
 
-    <HorizontalScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/list_group_back_color"
+        android:padding="@dimen/padding_S"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:textSize="@dimen/font_L"
+            android:textColor="@color/gray_700"
+            android:text="入庫" />
 
-            <Button
-                android:id="@+id/btn_unplanned_store"
-                android:layout_width="@dimen/top_menu_icon_size"
-                android:layout_height="@dimen/top_menu_icon_size"
-                android:background="@drawable/top_menu_icon_stock"
-                android:text="@string/func_name_unplanned_store" />
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="@dimen/top_menu_icon_size"
-                android:layout_height="@dimen/top_menu_icon_size"
-                android:background="@drawable/top_menu_icon_stock" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:layout_gravity="top"
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="@dimen/top_menu_icon_size"
-                android:layout_height="@dimen/top_menu_icon_size"
-                android:background="@drawable/top_menu_icon_stock" />
+                <Button
+                    android:id="@+id/btn_unplanned_store"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray_700"
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@drawable/shape_top_menu_icon_stock"
+                    android:text="@string/func_name_unplanned_store" />
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
 
-            <Button
-                android:id="@+id/button4"
-                android:layout_width="@dimen/top_menu_icon_size"
-                android:layout_height="@dimen/top_menu_icon_size"
-                android:background="@drawable/top_menu_icon_stock" />
-
-            <Button
-                android:id="@+id/button5"
-                android:layout_width="@dimen/top_menu_icon_size"
-                android:layout_height="@dimen/top_menu_icon_size"
-                android:background="@drawable/top_menu_icon_stock" />
-
-        </LinearLayout>
-    </HorizontalScrollView>
-
-    <HorizontalScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/list_group_back_color"
+        android:padding="@dimen/padding_S"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:textSize="@dimen/font_L"
+            android:textColor="@color/gray_700"
+            android:text="出庫" />
 
-            <Button
-                android:id="@+id/btn_stock_search"
-                android:layout_width="@dimen/top_menu_icon_size"
-                android:layout_height="@dimen/top_menu_icon_size"
-                android:background="@drawable/top_menu_icon_stock"
-                android:text="@string/func_name_stock_search" />
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <Button
-                android:layout_width="@dimen/top_menu_icon_size"
-                android:layout_height="@dimen/top_menu_icon_size"
-                android:background="@drawable/top_menu_icon_stock" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:layout_gravity="top"
+                android:orientation="horizontal">
 
-            <Button
-                android:layout_width="@dimen/top_menu_icon_size"
-                android:layout_height="@dimen/top_menu_icon_size"
-                android:background="@drawable/top_menu_icon_stock" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray_700"
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@drawable/shape_top_menu_icon_none"
+                    android:text="@string/func_name_unplanned_store" />
 
-            <Button
-                android:layout_width="@dimen/top_menu_icon_size"
-                android:layout_height="@dimen/top_menu_icon_size"
-                android:background="@drawable/top_menu_icon_stock" />
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
 
-            <Button
-                android:layout_width="@dimen/top_menu_icon_size"
-                android:layout_height="@dimen/top_menu_icon_size"
-                android:background="@drawable/top_menu_icon_stock" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/list_group_back_color"
+        android:padding="@dimen/padding_S"
+        android:orientation="vertical">
 
-        </LinearLayout>
-    </HorizontalScrollView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_L"
+            android:textColor="@color/gray_700"
+            android:text="返品" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:layout_gravity="top"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray_700"
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@drawable/shape_top_menu_icon_none"
+                    android:text="@string/func_name_unplanned_store" />
+
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/list_group_back_color"
+        android:padding="@dimen/padding_S"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_L"
+            android:textColor="@color/gray_700"
+            android:text="在庫" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:layout_gravity="top"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_stock_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray_700"
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@drawable/shape_top_menu_icon_search"
+                    android:text="@string/func_name_stock_search" />
+
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
 
 </LinearLayout>
 

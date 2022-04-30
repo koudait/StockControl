@@ -25,5 +25,10 @@
     <dimen name="padding_SS">8dp</dimen>
     <dimen name="padding_SSS">4dp</dimen>
 
-    <dimen name="top_menu_icon_size">100dp</dimen>
+    <!-- radius -->
+    <dimen name="radius_S">10dp</dimen>
+    <dimen name="radius_M">20dp</dimen>
+    <dimen name="radius_L">30dp</dimen>
+
+    <dimen name="top_menu_icon_size">50dp</dimen>
 </resources>
