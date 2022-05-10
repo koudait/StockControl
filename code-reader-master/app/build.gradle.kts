@@ -63,7 +63,7 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.4.0")
     implementation("androidx.fragment:fragment-ktx:1.4.1")
     implementation("androidx.preference:preference-ktx:1.2.0")
-    implementation("com.google.android.material:material:1.5.0")
+    implementation("com.google.android.material:material:1.6.0")
     implementation("com.google.android.play:core:1.10.3")
     implementation("com.google.android.play:core-ktx:1.8.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.3")
@@ -75,8 +75,7 @@ dependencies {
     implementation("com.google.mlkit:barcode-scanning:17.0.2")
     implementation("com.jakewharton.timber:timber:5.0.1")
     implementation("androidx.core:core-splashscreen:1.0.0-beta02")
-
-
+    implementation("com.amazonaws:aws-android-sdk-cognitoidentityprovider:2.45.0")
 }
 
 fun isStable(version: String): Boolean {
