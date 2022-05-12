@@ -10,9 +10,9 @@
             app:enableCopying="true"
             app:iconSpaceReserved="false"
             app:key="VIBRATE_BOOLEAN"
-            app:summaryOff="@string/preference_summary_vibration_off"
-            app:summaryOn="@string/preference_summary_vibration_on"
-            app:title="@string/preference_title_vibration"
+            app:summaryOff="@string/preference_summary_darkmode_off"
+            app:summaryOn="@string/preference_summary_darkmode_on"
+            app:title="@string/preference_title_darkmode"
             />
     </PreferenceCategory>
 

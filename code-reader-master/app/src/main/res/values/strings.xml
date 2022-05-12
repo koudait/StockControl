@@ -34,9 +34,17 @@
     <string name="action_search">search</string>
 
     <string name="preference_category_settings">Settings</string>
-    <string name="preference_title_vibration">Vibration</string>
-    <string name="preference_summary_vibration_on">Vibrate when code is detected</string>
-    <string name="preference_summary_vibration_off">Does not vibrate when code is detected</string>
+    <string name="preference_title_darkmode">Darkmode</string>
+    <string name="preference_summary_darkmode_on">Turn dark mode on</string>
+    <string name="preference_summary_darkmode_off">Turn dark mode off</string>
+
+    <string name="option_switch">Switch Darkmode</string>
+
+    <string name="option_title">Setting</string>
+    <string name="Darkmode">Dark Theme ON/OFF</string>
+    <string name="theme_explanation">The theme can be switched</string>
+    <string name="theme_label">Theme</string>
+
 
     <string name="preference_category_information">Information</string>
     <string name="preference_title_version">Version</string>
@@ -70,6 +78,7 @@
     <string name="login_message">login</string>
     <string name="newaccount_message">Create a new account</string>
     <string name="loginerror_message">If you forgot your password, click here</string>
+    <string name="option_menu">Click here for option screen</string>
 
     <string name="account_header">Create a new account</string>
 
@@ -102,6 +111,12 @@
     <string name="func_name_unplanned_store">Unplanned Store</string>
     <string name="func_name_planned_store">Planned Store</string>
     <string name="func_name_stock_search">Stock Search</string>
+
+    <string name="ui">Setting</string>
+    <string name="dark_mode_def_value">MODE_NIGHT_FOLLOW_SYSTEM</string>
+    <string name="dark_mode">Dark Mode</string>
+
+    <string name="settings">Settings</string>
 
 
 </resources>

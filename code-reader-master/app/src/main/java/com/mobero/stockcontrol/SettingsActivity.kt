@@ -1,49 +1,59 @@
-/*
- * Copyright (c) 2021 大前良介 (OHMAE Ryosuke)
- *
- * This software is released under the MIT License.
- * http://opensource.org/licenses/MIT
- */
-
 package com.mobero.stockcontrol
 
-import android.content.Context
-import android.content.Intent
+
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import com.mobero.stockcontrol.databinding.ActivitySettingsBinding
-import com.mobero.stockcontrol.setting.Settings
+import androidx.preference.PreferenceManager
 
-class SettingsActivity : AppCompatActivity() {
-    private lateinit var binding: ActivitySettingsBinding
+
+class SettingsActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceChangeListener,
+    Preference.SummaryProvider<ListPreference> {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySettingsBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
-        if (savedInstanceState == null) {
-            supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.fragment_container, SettingsFragment())
-                .commit()
-        }
+        setContentView(R.layout.activity_settings)
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.settings, SettingsFragment())
+            .commit()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        PreferenceManager.getDefaultSharedPreferences(this)
+            .registerOnSharedPreferenceChangeListener(this)
+    }
+
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+        val darkModeString = getString(R.string.dark_mode)
+        key?.let {
+            if (it == darkModeString) sharedPreferences?.let { pref ->
+                val darkModeValues = resources.getStringArray(R.array.dark_mode_values)
+                when (pref.getString(darkModeString, darkModeValues[0])) {
+                    darkModeValues[0] -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    darkModeValues[1] -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
+                }
+            }
+        }
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-            Settings.get().apply(this)
-            setPreferencesFromResource(R.xml.preferences, rootKey)
-            findPreference<Preference>("VERSION")?.summary = BuildConfig.VERSION_NAME
+            setPreferencesFromResource(R.xml.root_preferences, rootKey)
         }
     }
 
-    companion object {
-        fun start(context: Context) {
-            context.startActivity(Intent(context, SettingsActivity::class.java))
-        }
+    override fun onDestroy() {
+        super.onDestroy()
+        PreferenceManager.getDefaultSharedPreferences(this)
+            .unregisterOnSharedPreferenceChangeListener(this)
     }
+
+    override fun provideSummary(preference: ListPreference): CharSequence? =
+        if (preference.key == getString(R.string.dark_mode)) preference.entry
+        else "Unknown Preference"
 }

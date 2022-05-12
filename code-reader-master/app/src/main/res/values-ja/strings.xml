@@ -9,6 +9,11 @@
     <string name="text_register">登録</string>
     <string name="hint_input_text_jan">JANコード</string>
 
+    <string name="option_switch">ダークモード ON/OFF</string>
+
+    <string name="option_title">設定画面</string>
+    <string name="Darkmode">ダークモード ON/OFF</string>
+    <string name="theme_explanation">テーマの切り替えが可能です</string>
 
     <string name="dialog_title_permission">権限の許可が必要</string>
     <string name="dialog_message_camera_permission">カメラへのアクセス権がありません。\nコードスキャンを利用するには「アプリ情報」から許可してください</string>
@@ -34,9 +39,10 @@
     <string name="action_search">検索</string>
 
     <string name="preference_category_settings">設定</string>
-    <string name="preference_title_vibration">バイブ</string>
-    <string name="preference_summary_vibration_on">検出時にバイブレーションを行います</string>
-    <string name="preference_summary_vibration_off">バイブレーションを行いません</string>
+    <string name="preference_title_darkmode">ダークモード</string>
+    <string name="preference_summary_darkmode_on">ダークモードをONにします</string>
+    <string name="preference_summary_darkmode_off">ダークモードをOFFにします</string>
+    <string name="theme_label">Theme</string>
 
     <string name="preference_category_information">情報</string>
     <string name="preference_title_version">バージョン</string>
@@ -69,6 +75,8 @@
     <string name="login_message">ログイン</string>
     <string name="newaccount_message">アカウント新規作成はこちらから</string>
     <string name="loginerror_message">パスワードを忘れた方はこちら</string>
+    <string name="option_menu">オプション画面はこちら</string>
+
 
     <string name="account_header">アカウント新規作成</string>
 
@@ -103,5 +111,11 @@
     <string name="category_name_ship">出荷</string>
     <string name="category_name_return">返品</string>
     <string name="category_name_stock">在庫</string>
+    <string name="ui">設定</string>
+    <string name="dark_mode_def_value">MODE_NIGHT_FOLLOW_SYSTEM</string>
+    <string name="dark_mode">ダークモード</string>
+
+    <string name="settings">設定</string>
+
 
 </resources>

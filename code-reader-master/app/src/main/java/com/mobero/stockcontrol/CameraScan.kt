@@ -220,7 +220,6 @@ class CameraScan : AppCompatActivity(), PermissionDialog.OnCancelListener {
             R.id.privacy_policy -> Launcher.openPrivacyPolicy(this)
             R.id.share_this_app -> Launcher.shareThisApp(this)
             R.id.play_store -> Launcher.openGooglePlay(this)
-            R.id.settings -> SettingsActivity.start(this)
             else -> return super.onOptionsItemSelected(item)
         }
         return true
