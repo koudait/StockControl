@@ -30,11 +30,20 @@ class SplashActivity : AppCompatActivity() {
     //スプラッシュ画面からスタート画面に遷移するためのクラス
     inner class SplashHandler : Runnable {
         override fun run() {
-            //画面遷移
-            intent = Intent(this@SplashActivity, LoginActivity::class.java)
-            startActivity(intent)
-            //アクティビティを破棄する
-            this@SplashActivity.finish()
+
+            //デバッグモードのときはメニュー画面から開始
+            if (BuildConfig.DEBUG) {
+                intent = Intent(this@SplashActivity, MenuActivity::class.java)
+                startActivity(intent)
+                //アクティビティを破棄する
+                this@SplashActivity.finish()
+            } else {
+                //通常時はログイン画面から開始
+                intent = Intent(this@SplashActivity, LoginActivity::class.java)
+                startActivity(intent)
+                //アクティビティを破棄する
+                this@SplashActivity.finish()
+            }
         }
     }
 }
