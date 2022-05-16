@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="theme_label">Theme</string>
+    <string name="ui">Setting</string>
+    <string name="dark_mode_def_value">MODE_NIGHT_FOLLOW_SYSTEM</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="settings">Settings</string>
+</resources>
