@@ -110,6 +110,7 @@
     <string name="category_name_stock">Stock</string>
     <string name="func_name_unplanned_store">Unplanned</string>
     <string name="func_name_planned_store">Planned</string>
+    <string name="func_name_unplanned_ship">Unplanned</string>
     <string name="func_name_stock_search">Search</string>
 
     <string name="ui">Setting</string>

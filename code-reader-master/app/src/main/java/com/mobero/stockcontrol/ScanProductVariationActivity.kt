@@ -32,4 +32,8 @@ open class ScanProductVariationActivity(layoutId: Int): ProductVariationListActi
     override fun onListAdded(item: Any) {
         (item as ProductVariation).scanNum++
     }
+
+    override fun onListSub(item: Any) {
+        (item as ProductVariation).scanNum--
+    }
 }

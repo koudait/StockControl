@@ -18,16 +18,25 @@ class MenuActivity : AppCompatActivity() {
         // ImageButtonの取得
         val btnUnplannedStore: Button = findViewById(R.id.btn_unplanned_store)
         val btnStockSearch: Button = findViewById(R.id.btn_stock_search)
+        val btnUnplannedShip: Button = findViewById(R.id.btn_unplanned_ship)
 
-        // ボタンを押したら次の画面へ
+        // ボタンを押したら現物入庫画面へ
         btnUnplannedStore.setOnClickListener {
             val intent = Intent(this, UnplannedStoredActivity::class.java)
             startActivity(intent)
         }
+        //ボタンを押したら在庫検索画面へ
         btnStockSearch.setOnClickListener {
             val intent = Intent(this, StockSearchActivity::class.java)
             startActivity(intent)
         }
+
+        //ボタンを押したら現物入庫画面へ
+        btnUnplannedShip.setOnClickListener {
+            val intent = Intent(this, UnplannedShipActivity::class.java)
+            startActivity(intent)
+        }
+
 
         val darkModeValues = resources.getStringArray(R.array.dark_mode_values)
         when (PreferenceManager.getDefaultSharedPreferences(this)

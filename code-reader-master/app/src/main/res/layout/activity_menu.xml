@@ -86,11 +86,13 @@
                 android:orientation="horizontal">
 
                 <Button
+                    android:id="@+id/btn_unplanned_ship"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/gray_700"
                     android:background="@android:color/transparent"
-                    android:drawableTop="@drawable/shape_top_menu_icon_none" />
+                    android:drawableTop="@drawable/shape_top_menu_icon_none"
+                    android:text="@string/func_name_unplanned_ship"/>
 
                 <Button
                     android:layout_width="wrap_content"
