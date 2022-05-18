@@ -35,7 +35,7 @@
 
     <!-- TOP Menu -->
     <color name="list_group_back_color">#DDDDDD</color>
-    <color name="list_item_back_color">#0C4A7C</color>
+    <color name="list_item_back_color">#E5E5E5</color>
     <color name="list_item_none_back_color">#BBBBBB</color>
     <color name="list_item_font_color">#000000</color>
 </resources>
