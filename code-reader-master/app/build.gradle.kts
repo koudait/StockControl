@@ -47,6 +47,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    namespace = "com.mobero.stockcontrol"
     applicationVariants.all {
         if (buildType.name == "release") {
             outputs.all {

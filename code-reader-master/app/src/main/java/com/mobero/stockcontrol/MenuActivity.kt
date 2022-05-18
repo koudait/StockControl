@@ -36,7 +36,6 @@ class MenuActivity : AppCompatActivity() {
              darkModeValues[1] -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
          }
-        setContentView(R.layout.activity_menu)
     }
 
     //ダークモードメニュー表示
@@ -45,9 +44,12 @@ class MenuActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
     //ダークモードメニュー選択
-    override fun onOptionsItemSelected(item: MenuItem): Boolean =
-        if (item.itemId == R.id.settings) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return if (item.itemId == R.id.settings) {
             startActivity(Intent(this, SettingsActivity::class.java))
             true
-        } else super.onOptionsItemSelected(item)
+        } else {
+            super.onOptionsItemSelected(item)
+        }
+    }
 }
