@@ -18,16 +18,25 @@ class MenuActivity : AppCompatActivity() {
         // ImageButtonの取得
         val btnUnplannedStore: Button = findViewById(R.id.btn_unplanned_store)
         val btnStockSearch: Button = findViewById(R.id.btn_stock_search)
+        val btnUnplannedShip: Button = findViewById(R.id.btn_unplanned_ship)
 
-        // ボタンを押したら次の画面へ
+        // ボタンを押したら現物入庫画面へ
         btnUnplannedStore.setOnClickListener {
             val intent = Intent(this, UnplannedStoredActivity::class.java)
             startActivity(intent)
         }
+        //ボタンを押したら在庫検索画面へ
         btnStockSearch.setOnClickListener {
             val intent = Intent(this, StockSearchActivity::class.java)
             startActivity(intent)
         }
+
+        //ボタンを押したら現物入庫画面へ
+        btnUnplannedShip.setOnClickListener {
+            val intent = Intent(this, UnplannedShipActivity::class.java)
+            startActivity(intent)
+        }
+
 
         val darkModeValues = resources.getStringArray(R.array.dark_mode_values)
         when (PreferenceManager.getDefaultSharedPreferences(this)
@@ -36,7 +45,6 @@ class MenuActivity : AppCompatActivity() {
              darkModeValues[1] -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
          }
-        setContentView(R.layout.activity_menu)
     }
 
     //ダークモードメニュー表示
@@ -45,9 +53,12 @@ class MenuActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
     //ダークモードメニュー選択
-    override fun onOptionsItemSelected(item: MenuItem): Boolean =
-        if (item.itemId == R.id.settings) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return if (item.itemId == R.id.settings) {
             startActivity(Intent(this, SettingsActivity::class.java))
             true
-        } else super.onOptionsItemSelected(item)
+        } else {
+            super.onOptionsItemSelected(item)
+        }
+    }
 }
