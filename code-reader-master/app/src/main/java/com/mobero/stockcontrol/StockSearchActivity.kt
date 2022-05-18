@@ -8,7 +8,7 @@ import com.mobero.stockcontrol.model.ProductVariation
 import com.mobero.stockcontrol.model.Stock
 import com.mobero.stockcontrol.util.ProductUtils
 
-class StockSearchActivity// 削除確認ダイアログを表示
+abstract class StockSearchActivity// 削除確認ダイアログを表示
     : ProductVariationListActivity(layoutId = R.layout.activity_stock_search), ProductVariationListActivity.IListListener, ProductVariationListActivity.IStockListener {
 
     /**

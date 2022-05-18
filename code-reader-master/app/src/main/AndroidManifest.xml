@@ -28,6 +28,9 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="s">
         <activity
+            android:name=".UnplannedShipActivity"
+            android:exported="false" />
+        <activity
             android:name=".NewAccountActivity"
             android:exported="false" />
         <activity
