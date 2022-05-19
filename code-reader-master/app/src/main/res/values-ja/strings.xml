@@ -112,6 +112,9 @@
     <string name="category_name_ship">出荷</string>
     <string name="category_name_return">返品</string>
     <string name="category_name_stock">在庫</string>
+    <string name="func_name_balance_search">出納検索</string>
+
+
     <string name="ui">設定</string>
     <string name="dark_mode_def_value">MODE_NIGHT_FOLLOW_SYSTEM</string>
     <string name="dark_mode">ダークモード</string>

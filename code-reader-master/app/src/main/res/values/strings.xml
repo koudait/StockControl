@@ -112,6 +112,7 @@
     <string name="func_name_planned_store">Planned</string>
     <string name="func_name_unplanned_ship">Unplanned</string>
     <string name="func_name_stock_search">Search</string>
+    <string name="func_name_balance_search">Search</string>
 
     <string name="ui">Setting</string>
     <string name="dark_mode_def_value">MODE_NIGHT_FOLLOW_SYSTEM</string>
