@@ -5,7 +5,7 @@
     <string name="app_info">アプリ情報</string>
 
     <string name="text_input">JANコードを入力しEnterキーを押すか、\nカメラからバーコードを読み取ってください。</string>
-    <string name="text_StockChangeHistory_input">在庫の変動記録を照会します。\nJANコードまたはロケコードを入力し\n照会ボタンを押してください。</string>
+    <string name="text_StockChangeHistory_input">在庫の変動記録を照会します。\nJANコードまたはロケコードを入力し、\n照会ボタンを押してください。</string>
     <string name="btn_camera">カメラ起動</string>
     <string name="btn_search">照会</string>
     <string name="text_register">登録</string>
