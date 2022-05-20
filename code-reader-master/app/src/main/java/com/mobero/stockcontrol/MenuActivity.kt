@@ -19,6 +19,8 @@ class MenuActivity : AppCompatActivity() {
         val btnUnplannedStore: Button = findViewById(R.id.btn_unplanned_store)
         val btnStockSearch: Button = findViewById(R.id.btn_stock_search)
         val btnUnplannedShip: Button = findViewById(R.id.btn_unplanned_ship)
+        val btnStockChangeHistorySearch: Button = findViewById(R.id.btn_StockChangeHistory_search)
+
 
         // ボタンを押したら現物入庫画面へ
         btnUnplannedStore.setOnClickListener {
@@ -34,6 +36,13 @@ class MenuActivity : AppCompatActivity() {
         //ボタンを押したら現物入庫画面へ
         btnUnplannedShip.setOnClickListener {
             val intent = Intent(this, UnplannedShipActivity::class.java)
+            startActivity(intent)
+        }
+
+
+        //ボタンを押したら出納検索画面へ
+        btnStockChangeHistorySearch.setOnClickListener {
+            val intent = Intent(this, StockChangeHistoryActivity::class.java)
             startActivity(intent)
         }
 

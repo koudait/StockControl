@@ -5,7 +5,9 @@
     <string name="app_info">App info</string>
 
     <string name="text_input">Enter the JAN code or scan it from the camera.</string>
+    <string name="text_StockChangeHistory_input">Display inventory fluctuation records.\nPlease enter the JAN code or location code.</string>
     <string name="btn_camera">Camera</string>
+    <string name="btn_search">Inquiry</string>
     <string name="text_register">Register</string>
     <string name="hint_input_text_jan">JAN code</string>
     <string name="hint_input_text_jan_loc_code">JAN code or Location code</string>
@@ -112,7 +114,7 @@
     <string name="func_name_planned_store">Planned</string>
     <string name="func_name_unplanned_ship">Unplanned</string>
     <string name="func_name_stock_search">Search</string>
-    <string name="func_name_balance_search">Search</string>
+    <string name="func_name_StockChangeHistory_search">Search</string>
 
     <string name="ui">Setting</string>
     <string name="dark_mode_def_value">MODE_NIGHT_FOLLOW_SYSTEM</string>

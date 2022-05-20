@@ -5,7 +5,9 @@
     <string name="app_info">アプリ情報</string>
 
     <string name="text_input">JANコードを入力しEnterキーを押すか、\nカメラからバーコードを読み取ってください。</string>
+    <string name="text_StockChangeHistory_input">在庫の変動記録を照会します。\nJANコードまたはロケコードを入力してください。</string>
     <string name="btn_camera">カメラ起動</string>
+    <string name="btn_search">照会</string>
     <string name="text_register">登録</string>
     <string name="hint_input_text_jan">JANコード</string>
 
@@ -112,7 +114,7 @@
     <string name="category_name_ship">出荷</string>
     <string name="category_name_return">返品</string>
     <string name="category_name_stock">在庫</string>
-    <string name="func_name_balance_search">出納検索</string>
+    <string name="func_name_StockChangeHistory_search">出納検索</string>
 
 
     <string name="ui">設定</string>

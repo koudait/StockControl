@@ -27,6 +27,9 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="s">
         <activity
+            android:name=".StockChangeHistoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".UnplannedShipActivity"
             android:exported="false" />
         <activity

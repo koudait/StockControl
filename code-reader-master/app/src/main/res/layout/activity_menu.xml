@@ -1,219 +1,226 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#e1e3e1"
-    android:orientation="vertical">
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent">
 
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/list_group_back_color"
-        android:padding="@dimen/padding_S"
+        android:layout_height="match_parent"
+        android:background="#e1e3e1"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/category_name_store"
-            android:textColor="@color/gray_700"
-            android:textSize="@dimen/font_L" />
-
-        <HorizontalScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/list_group_back_color"
+            android:padding="@dimen/padding_S"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="top"
-                android:layout_gravity="top"
-                android:orientation="horizontal">
+                android:text="@string/category_name_store"
+                android:textColor="@color/gray_700"
+                android:textSize="@dimen/font_L" />
 
-                <Button
-                    android:id="@+id/btn_unplanned_store"
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/gray_700"
-                    android:background="@android:color/transparent"
-                    android:drawableTop="@drawable/shape_top_menu_icon_stock"
-                    android:text="@string/func_name_unplanned_store" />
+                    android:gravity="top"
+                    android:layout_gravity="top"
+                    android:orientation="horizontal">
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/gray_700"
-                    android:background="@android:color/transparent"
-                    android:drawableTop="@drawable/shape_top_menu_icon_none" />
+                    <Button
+                        android:id="@+id/btn_unplanned_store"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray_700"
+                        android:background="@android:color/transparent"
+                        android:drawableTop="@drawable/shape_top_menu_icon_stock"
+                        android:text="@string/func_name_unplanned_store" />
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/gray_700"
-                    android:background="@android:color/transparent"
-                    android:drawableTop="@drawable/shape_top_menu_icon_none" />
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray_700"
+                        android:background="@android:color/transparent"
+                        android:drawableTop="@drawable/shape_top_menu_icon_none" />
 
-            </LinearLayout>
-        </HorizontalScrollView>
-    </LinearLayout>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray_700"
+                        android:background="@android:color/transparent"
+                        android:drawableTop="@drawable/shape_top_menu_icon_none" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/list_group_back_color"
-        android:padding="@dimen/padding_S"
-        android:orientation="vertical">
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/category_name_ship"
-            android:textColor="@color/gray_700"
-            android:textSize="@dimen/font_L" />
-
-        <HorizontalScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/list_group_back_color"
+            android:padding="@dimen/padding_S"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="top"
-                android:layout_gravity="top"
-                android:orientation="horizontal">
+                android:text="@string/category_name_ship"
+                android:textColor="@color/gray_700"
+                android:textSize="@dimen/font_L" />
 
-                <Button
-                    android:id="@+id/btn_unplanned_ship"
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/gray_700"
-                    android:background="@android:color/transparent"
-                    android:drawableTop="@drawable/shape_top_menu_icon_none"
-                    android:text="@string/func_name_unplanned_ship"/>
+                    android:gravity="top"
+                    android:layout_gravity="top"
+                    android:orientation="horizontal">
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/gray_700"
-                    android:background="@android:color/transparent"
-                    android:drawableTop="@drawable/shape_top_menu_icon_none" />
+                    <Button
+                        android:id="@+id/btn_unplanned_ship"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray_700"
+                        android:background="@android:color/transparent"
+                        android:drawableTop="@drawable/shape_top_menu_icon_none"
+                        android:text="@string/func_name_unplanned_ship"/>
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/gray_700"
-                    android:background="@android:color/transparent"
-                    android:drawableTop="@drawable/shape_top_menu_icon_none" />
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray_700"
+                        android:background="@android:color/transparent"
+                        android:drawableTop="@drawable/shape_top_menu_icon_none" />
 
-            </LinearLayout>
-        </HorizontalScrollView>
-    </LinearLayout>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray_700"
+                        android:background="@android:color/transparent"
+                        android:drawableTop="@drawable/shape_top_menu_icon_none" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/list_group_back_color"
-        android:padding="@dimen/padding_S"
-        android:orientation="vertical">
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/category_name_return"
-            android:textColor="@color/gray_700"
-            android:textSize="@dimen/font_L" />
-
-        <HorizontalScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/list_group_back_color"
+            android:padding="@dimen/padding_S"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="top"
-                android:layout_gravity="top"
-                android:orientation="horizontal">
+                android:text="@string/category_name_return"
+                android:textColor="@color/gray_700"
+                android:textSize="@dimen/font_L" />
 
-                <Button
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/gray_700"
-                    android:background="@android:color/transparent"
-                    android:drawableTop="@drawable/shape_top_menu_icon_none" />
+                    android:gravity="top"
+                    android:layout_gravity="top"
+                    android:orientation="horizontal">
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/gray_700"
-                    android:background="@android:color/transparent"
-                    android:drawableTop="@drawable/shape_top_menu_icon_none" />
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray_700"
+                        android:background="@android:color/transparent"
+                        android:drawableTop="@drawable/shape_top_menu_icon_none" />
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/gray_700"
-                    android:background="@android:color/transparent"
-                    android:drawableTop="@drawable/shape_top_menu_icon_none" />
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray_700"
+                        android:background="@android:color/transparent"
+                        android:drawableTop="@drawable/shape_top_menu_icon_none" />
 
-            </LinearLayout>
-        </HorizontalScrollView>
-    </LinearLayout>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray_700"
+                        android:background="@android:color/transparent"
+                        android:drawableTop="@drawable/shape_top_menu_icon_none" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/list_group_back_color"
-        android:padding="@dimen/padding_S"
-        android:orientation="vertical">
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/category_name_stock"
-            android:textColor="@color/gray_700"
-            android:textSize="@dimen/font_L" />
-
-        <HorizontalScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/list_group_back_color"
+            android:padding="@dimen/padding_S"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="top"
-                android:layout_gravity="top"
-                android:orientation="horizontal">
+                android:text="@string/category_name_stock"
+                android:textColor="@color/gray_700"
+                android:textSize="@dimen/font_L" />
 
-                <Button
-                    android:id="@+id/btn_stock_search"
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/gray_700"
-                    android:background="@android:color/transparent"
-                    android:drawableTop="@drawable/shape_top_menu_icon_search"
-                    android:text="@string/func_name_stock_search" />
+                    android:gravity="top"
+                    android:layout_gravity="top"
+                    android:orientation="horizontal">
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/gray_700"
-                    android:background="@android:color/transparent"
-                    android:drawableTop="@drawable/shape_top_menu_icon_none" />
+                    <Button
+                        android:id="@+id/btn_stock_search"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray_700"
+                        android:background="@android:color/transparent"
+                        android:drawableTop="@drawable/shape_top_menu_icon_search"
+                        android:text="@string/func_name_stock_search" />
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/gray_700"
-                    android:background="@android:color/transparent"
-                    android:drawableTop="@drawable/shape_top_menu_icon_none" />
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray_700"
+                        android:background="@android:color/transparent"
+                        android:drawableTop="@drawable/shape_top_menu_icon_none" />
 
-            </LinearLayout>
-        </HorizontalScrollView>
+                    <Button
+                        android:id="@+id/btn_StockChangeHistory_search"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray_700"
+                        android:background="@android:color/transparent"
+                        android:drawableTop="@drawable/shape_top_menu_icon_search"
+                        android:text="@string/func_name_StockChangeHistory_search" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+
     </LinearLayout>
 
-</LinearLayout>
-
+</ScrollView>
 
