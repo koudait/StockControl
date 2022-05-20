@@ -6,7 +6,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 
-class StockChangeHistoryActivity : AppCompatActivity() {
+class StockChangeHistoryActivity : ProductVariationListActivity(R.layout.activity_stock_change_history) {
+    init {
+
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_stock_change_history)
