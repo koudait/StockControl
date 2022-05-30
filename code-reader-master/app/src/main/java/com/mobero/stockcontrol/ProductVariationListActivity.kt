@@ -32,11 +32,6 @@ open class ProductVariationListActivity(layoutId: Int, var mAdapter: ArrayAdapte
          */
         fun onListAdded(item: Any)
 
-        /**
-         * リストからの削除が成功した場合に呼ばれるイベント
-         */
-        fun onListSub(item: Any)
-
     }
 
     interface IProductVariationListener {

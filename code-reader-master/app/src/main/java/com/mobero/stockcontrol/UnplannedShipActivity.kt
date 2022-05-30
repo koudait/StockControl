@@ -54,7 +54,7 @@ class UnplannedShipActivity : ScanProductVariationActivity(R.layout.activity_unp
             val existedPrv = addProductVariation(prv)
             if (existedPrv == null) {
                 // 商品バリエーションリストへの追加に成功した場合に呼び出す
-                onListSub(prv)
+                onListAdded(prv)
             } else {
                 // 商品バリエーションリストへの追加時に商品が既に存在した場合に呼び出す
                 onProductVariationExisted(existedPrv)
