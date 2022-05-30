@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_list_view_item"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/fluctuatingDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:padding="@dimen/padding_SSS"
+                    android:singleLine="true"
+                    android:textColor="@color/list_item_font_color"
+                    android:textSize="@dimen/font_S" />
+
+                <TextView
+                    android:id="@+id/receivingCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:padding="@dimen/padding_SSS"
+                    android:singleLine="true"
+                    android:textColor="@color/list_item_font_color"
+                    android:textSize="@dimen/font_S" />
+
+                <TextView
+                    android:id="@+id/shippingCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:padding="@dimen/padding_SSS"
+                    android:singleLine="true"
+                    android:textColor="@color/list_item_font_color"
+                    android:textSize="@dimen/font_S" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:padding="@dimen/padding_SSS"
+                    android:singleLine="true"
+                    android:textColor="@color/list_item_font_color"
+                    android:textSize="@dimen/font_S" />
+
+                <TextView
+                    android:id="@+id/productCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:padding="@dimen/padding_SSS"
+                    android:singleLine="true"
+                    android:textColor="@color/list_item_font_color"
+                    android:textSize="@dimen/font_S" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/uniqueCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:padding="@dimen/padding_SSS"
+                android:singleLine="true"
+                android:textColor="@color/list_item_font_color"
+                android:textSize="@dimen/font_M" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/color"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:padding="@dimen/padding_SSS"
+                    android:singleLine="true"
+                    android:textColor="@color/list_item_font_color"
+                    android:textSize="@dimen/font_S" />
+
+                <TextView
+                    android:id="@+id/size"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:padding="@dimen/padding_SSS"
+                    android:singleLine="true"
+                    android:textColor="@color/list_item_font_color"
+                    android:textSize="@dimen/font_S" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
