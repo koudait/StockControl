@@ -1,9 +1,6 @@
 package com.mobero.stockcontrol.util
 
-import com.mobero.stockcontrol.model.Location
-import com.mobero.stockcontrol.model.Product
-import com.mobero.stockcontrol.model.ProductVariation
-import com.mobero.stockcontrol.model.Stock
+import com.mobero.stockcontrol.model.*
 
 object ProductUtils {
 
@@ -34,25 +31,27 @@ object ProductUtils {
             val loc: Location? = getDummyLocation()
             if (prv == null) continue
             if (loc == null) continue
-            val stock = Stock(prv.clientCode, prv.productCode, prv.productName, prv.prvId, prv.uniqueCode, prv.sizeName, prv.colorName, loc, (1..10).random())
+            val stock = Stock(prv, StockStatus(0, "良品"), StockType(0, "セル"), loc, (1..10).random())
             stockList.add(stock)
         }
         return stockList
     }
 
-    private fun getDummyProductVariation(): ProductVariation? {
+    fun getDummyProductVariation(): ProductVariation? {
         val range = (1..3)
         val random = range.random()
         var dummyProductVariation: ProductVariation? = null
+        val dummyProduct = Product("1", "1", "APEX Tシャツ")
+
         when (random) {
             1 -> {
-                dummyProductVariation = ProductVariation("1", "BLOOD", "ブラッドハウンドTシャツ", 1, "BLOOD001", "Sサイズ", "赤")
+                dummyProductVariation = ProductVariation(dummyProduct, 1, "APEX001", "S01", "Sサイズ", "C01", "赤", 1, 1)
             }
             2 -> {
-                dummyProductVariation = ProductVariation("1", "RACE", "レイスTシャツ", 2, "RACE001", "Sサイズ", "赤")
+                dummyProductVariation = ProductVariation(dummyProduct, 2, "APEX002", "S01", "Sサイズ", "C01", "赤", 1, 1)
             }
             3 -> {
-                dummyProductVariation = ProductVariation("1", "GIBRALTAL", "ジブラルタルTシャツ", 3, "GIBRALTAL001", "Sサイズ", "赤")
+                dummyProductVariation = ProductVariation(dummyProduct, 3, "APEX003", "S01", "Sサイズ", "C01", "赤", 1, 1)
             }
         }
         return dummyProductVariation

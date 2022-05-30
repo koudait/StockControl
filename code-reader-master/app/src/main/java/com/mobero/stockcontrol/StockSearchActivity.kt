@@ -8,7 +8,7 @@ import com.mobero.stockcontrol.model.ProductVariation
 import com.mobero.stockcontrol.model.Stock
 import com.mobero.stockcontrol.util.ProductUtils
 
-abstract class StockSearchActivity// 削除確認ダイアログを表示
+class StockSearchActivity// 削除確認ダイアログを表示
     : ProductVariationListActivity(layoutId = R.layout.activity_stock_search), ProductVariationListActivity.IListListener, ProductVariationListActivity.IStockListener {
 
     /**
@@ -23,9 +23,15 @@ abstract class StockSearchActivity// 削除確認ダイアログを表示
         setStockListener(this)
     }
 
+    /**
+     * リストアイテム削除キャンセル時のイベント
+     */
     override fun onListItemDeleteCancel(item: Any) {
     }
 
+    /**
+     * リスト追加時のイベント
+     */
     override fun onListAdded(item: Any) {
     }
 

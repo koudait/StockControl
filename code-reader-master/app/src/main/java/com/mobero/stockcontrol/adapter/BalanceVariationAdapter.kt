@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Button
 import android.widget.TextView
 import com.mobero.stockcontrol.R
 import com.mobero.stockcontrol.model.ProductVariation
@@ -18,7 +17,7 @@ class StockChangeHistoryVariationAdapter(context: Context, private var mList: Li
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var view = convertView
         // Productの取得
-        val productVariation: ProductVariation = mList[position] as ProductVariation
+        val prv: ProductVariation = mList[position] as ProductVariation
 
         // StockChangeHistoryの取得
         val StockChangeHistory: StockChangeHistory = mList[position] as StockChangeHistory
@@ -29,17 +28,17 @@ class StockChangeHistoryVariationAdapter(context: Context, private var mList: Li
         }
 
         // 各Viewの設定
-        view?.findViewById<TextView>(R.id.fluctuatingDate)?.text = StockChangeHistory.fluctuatingDate
+        view?.findViewById<TextView>(R.id.fluctuatingDate)?.text = StockChangeHistory.changeDate
         view?.findViewById<TextView>(R.id.receivingCount)?.text = StockChangeHistory.receivingCount.toString()
         view?.findViewById<TextView>(R.id.shippingCount)?.text = StockChangeHistory.shippingCount.toString()
-        view?.findViewById<TextView>(R.id.name)?.text = productVariation.productName
-        view?.findViewById<TextView>(R.id.productCode)?.text = productVariation.productCode
-        view?.findViewById<TextView>(R.id.uniqueCode)?.text = productVariation.uniqueCode
-        view?.findViewById<TextView>(R.id.color)?.text = productVariation.colorName
-        view?.findViewById<TextView>(R.id.size)?.text = productVariation.sizeName
+        view?.findViewById<TextView>(R.id.name)?.text = prv.prd.productName
+        view?.findViewById<TextView>(R.id.productCode)?.text = prv.prd.productCode
+        view?.findViewById<TextView>(R.id.uniqueCode)?.text = prv.uniqueCode
+        view?.findViewById<TextView>(R.id.color)?.text = prv.colorName
+        view?.findViewById<TextView>(R.id.size)?.text = prv.sizeName
 
         val num = view?.findViewById<TextView>(R.id.countView)
-        num?.text = productVariation.scanNum.toString()
+        num?.text = prv.scanNum.toString()
 
         return view!!
     }

@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.TextView
 import com.mobero.stockcontrol.R
 import com.mobero.stockcontrol.model.ProductVariation
+import com.mobero.stockcontrol.model.Stock
 
 class ProductVariationAdapter(context: Context, private var mList: List<Any>, private var incrementButtonClickListener: IncrementButtonClickListener? = null, private var isScan: Boolean = false) : ArrayAdapter<Any>(context, 0, mList) {
 
@@ -16,35 +17,44 @@ class ProductVariationAdapter(context: Context, private var mList: List<Any>, pr
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var view = convertView
-        // Productの取得
-        val productVariation:ProductVariation = mList[position] as ProductVariation
+
 
         // レイアウトの設定
         if (convertView == null) {
             view = layoutInflater.inflate(R.layout.list_item, parent, false)
         }
 
+        val prv:ProductVariation
+        // Productの取得
+        if (mList[position] is Stock) {
+            prv = (mList[position] as Stock).productVariation
+        } else if(mList[position] is ProductVariation) {
+            prv = mList[position] as ProductVariation
+        } else {
+            return view!!
+        }
+
         // 各Viewの設定
-        view?.findViewById<TextView>(R.id.name)?.text = productVariation.productName
-        view?.findViewById<TextView>(R.id.productCode)?.text = productVariation.productCode
-        view?.findViewById<TextView>(R.id.uniqueCode)?.text = productVariation.uniqueCode
-        view?.findViewById<TextView>(R.id.color)?.text = productVariation.colorName
-        view?.findViewById<TextView>(R.id.size)?.text = productVariation.sizeName
+        view?.findViewById<TextView>(R.id.name)?.text = prv.prd.productName
+        view?.findViewById<TextView>(R.id.productCode)?.text = prv.prd.productCode
+        view?.findViewById<TextView>(R.id.uniqueCode)?.text = prv.uniqueCode
+        view?.findViewById<TextView>(R.id.color)?.text = prv.colorName
+        view?.findViewById<TextView>(R.id.size)?.text = prv.sizeName
 
         val num = view?.findViewById<TextView>(R.id.countView)
-        num?.text = productVariation.scanNum.toString()
+        num?.text = prv.scanNum.toString()
 
         // マイナスボタンのクリックイベントを設定
         (view?.findViewById<Button>(R.id.btnSub))?.setOnClickListener {
-            productVariation.scanNum--
+            prv.scanNum--
             this@ProductVariationAdapter.notifyDataSetChanged()
-            incrementButtonClickListener?.onIncrementButtonClick(productVariation)
+            incrementButtonClickListener?.onIncrementButtonClick(prv)
         }
         // プラスボタンのクリックイベントを設定
         (view?.findViewById<Button>(R.id.btnAdd))?.setOnClickListener {
-            productVariation.scanNum++
+            prv.scanNum++
             this@ProductVariationAdapter.notifyDataSetChanged()
-            incrementButtonClickListener?.onIncrementButtonClick(productVariation)
+            incrementButtonClickListener?.onIncrementButtonClick(prv)
         }
 
         if (isScan) {
